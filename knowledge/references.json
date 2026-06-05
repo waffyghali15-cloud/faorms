@@ -1,0 +1,19 @@
+{
+  "project": "FarmOS",
+  "version": "1.0.0",
+  "sources": [
+    {
+      "id": "ross_bm_2025",
+      "title": "Ross Broiler Management Handbook 2025",
+      "publisher": "Aviagen",
+      "file": "ross_bm_2025.json",
+      "covers": ["temperature","humidity","weight","management","stockmanship"]
+    },
+    {
+      "id": "newcastle_nd",
+      "title": "Newcastle Disease — Full Profile",
+      "file": "newcastle.json",
+      "covers": ["ND","symptoms","PM_lesions","vaccination","treatment"]
+    }
+  ]
+}

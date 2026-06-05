@@ -1,0 +1,25 @@
+{
+  "id": "newcastle_nd",
+  "official_name": "Newcastle Disease",
+  "acronym": "ND",
+  "mortality_rate": "90-100% velogenic",
+  "symptoms": {
+    "respiratory": ["فم مفتوح","تمديد الرقبة","صفير","سعال"],
+    "nervous": ["التواء الرقبة","شلل الأجنحة","السير للخلف","ارتعاش"],
+    "digestive": ["إسهال أخضر","فقدان الشهية","جفاف سريع"],
+    "reproductive": ["انخفاض البيض لـ 0%","بيض مشوه","زلال مائي"]
+  },
+  "pm_lesions": {
+    "proventriculus": "نزيف نقطي على قمم الغدد الهضمية",
+    "intestines": "قرحات زرارية على اللوزتين الأعورين ورقعة ميكل",
+    "trachea": "احتقان وإفرازات كتارية",
+    "bursa": "وذمة واحتقان ونزيف داخلي"
+  },
+  "vaccination": [
+    {"day": 1, "vaccine": "HB1 أو Clone 30", "route": "رش خشن + حقن زيتي"},
+    {"day": 7, "vaccine": "LaSota أو Clone 30", "route": "قطرة عين"},
+    {"day": 18, "vaccine": "LaSota أو V4", "route": "ماء الشرب"}
+  ],
+  "differential": ["HPAI","ILT","IBD","Fowl Cholera"],
+  "source": "Diseases of Poultry 13th Ed — Swayne et al."
+}

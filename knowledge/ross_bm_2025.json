@@ -1,0 +1,1872 @@
+{
+  "document_info": {
+    "title": "Ross Broiler Management Handbook 2025",
+    "publisher": "Aviagen",
+    "version": "2025",
+    "language": "English",
+    "extraction_date": "2026-06-04",
+    "purpose": "Structured data extraction for AI database training",
+    "total_sections": 50
+  },
+  "key_factors_affecting_growth": {
+    "health": "Vaccination status, biosecurity, disease prevention",
+    "bird_welfare": "Stockmanship, environment, handling",
+    "nutrition": "Feed quality, nutrient balance, feed form",
+    "temperature": "Brooding, house temperature, heat stress management",
+    "water_supply": "Quality, temperature, accessibility",
+    "vaccination_status": "Maternal antibodies, vaccination programs",
+    "feed_supply": "Availability, distribution, physical quality",
+    "lighting": "Photoperiod, intensity, color temperature",
+    "stocking_density": "Space per bird, feeder/drinker access",
+    "ventilation": "Air quality, humidity, temperature control",
+    "chick_quality": "Genetics, hatchery management, transport"
+  },
+  "key_management_timetable": [
+    {
+      "age": "Before chick delivery",
+      "actions": [
+        "Clean and disinfect all housing and equipment",
+        "Obtain day-old chick information (weight, vaccination, parent stock age, health status)",
+        "Preheat house: Air 30°C (86°F) whole-house / 32°C (89.6°F) spot brooding edge",
+        "RH: 60-70%, Floor: 28-30°C (82.4-86°F), Litter: 28-32°C (82.4-89.6°F)",
+        "Set up feeders and drinkers, flush water lines",
+        "Spread litter 2-4 cm (0.8-1.6 in) depth"
+      ]
+    },
+    {
+      "age": "On chick arrival",
+      "actions": [
+        "Check environmental conditions (temperature, RH, ventilation)",
+        "Light intensity: 30-40 lux whole-house / 80-100 lux spot brooding",
+        "Monitor chick behavior 1-2 hours after placement",
+        "Weigh sample (3 boxes or 1% of population)",
+        "Calculate average body weight and flock uniformity (CV%/uniformity%)"
+      ]
+    },
+    {
+      "age": "0-3 days",
+      "actions": [
+        "Develop appetite from good brooding practices",
+        "Adjust environmental conditions based on bird behavior",
+        "23 hours light + 1 hour dark, gradually reach 4-6 hours darkness by day 7",
+        "Vent temperature: 39.4-40.5°C (103-105°F)",
+        "Assess crop fill in first 24 hours"
+      ]
+    },
+    {
+      "age": "4-6 days",
+      "actions": [
+        "Adjust environmental conditions",
+        "Transition to automated feeders",
+        "Expand brooding area gradually"
+      ]
+    },
+    {
+      "age": "7-13 days",
+      "actions": [
+        "Weigh birds individually (minimum 1% or 100 birds)",
+        "7-day body weight minimum 4.5x day-old weight",
+        "Transition starter to grower feed (10-13 days)",
+        "Minimum 4 hours continuous darkness after day 7",
+        "Light intensity: 5-10 lux"
+      ]
+    },
+    {
+      "age": "14-20 days",
+      "actions": [
+        "Bulk weigh at 14 days (minimum 1% or 100 birds)",
+        "Adjust drinker and feeder heights"
+      ]
+    },
+    {
+      "age": "21-27 days",
+      "actions": [
+        "Transition grower to finisher feed (~25 days)",
+        "Individual body weights at 21 days",
+        "Calculate flock CV%/uniformity%"
+      ]
+    },
+    {
+      "age": "35 to depletion",
+      "actions": [
+        "Weekly individual body weights",
+        "Adjust drinker and feeder heights"
+      ]
+    },
+    {
+      "age": "Pre-processing",
+      "actions": [
+        "23 hours light + 1 hour dark for 3 days prior to catching",
+        "Feed withdrawal: 8-12 hours before processing",
+        "Maintain water access until catching",
+        "Ensure catching equipment clean"
+      ]
+    }
+  ],
+  "brooding_temperatures": [
+    {
+      "body_weight_g": 44,
+      "body_weight_lb": 0.1,
+      "whole_house_c": 30,
+      "whole_house_f": 86.0,
+      "spot_edge_c": 32,
+      "spot_edge_f": 89.6,
+      "spot_2m_c": 29,
+      "spot_2m_f": 84.2
+    },
+    {
+      "body_weight_g": 100,
+      "body_weight_lb": 0.22,
+      "whole_house_c": 28,
+      "whole_house_f": 82.4,
+      "spot_edge_c": 30,
+      "spot_edge_f": 86.0,
+      "spot_2m_c": 27,
+      "spot_2m_f": 80.6
+    },
+    {
+      "body_weight_g": 180,
+      "body_weight_lb": 0.4,
+      "whole_house_c": 27,
+      "whole_house_f": 80.6,
+      "spot_edge_c": 28,
+      "spot_edge_f": 82.4,
+      "spot_2m_c": 25,
+      "spot_2m_f": 77.0
+    },
+    {
+      "body_weight_g": 290,
+      "body_weight_lb": 0.64,
+      "whole_house_c": 26,
+      "whole_house_f": 78.8,
+      "spot_edge_c": 27,
+      "spot_edge_f": 80.6,
+      "spot_2m_c": 25,
+      "spot_2m_f": 77.0
+    },
+    {
+      "body_weight_g": 425,
+      "body_weight_lb": 0.94,
+      "whole_house_c": 25,
+      "whole_house_f": 77.0,
+      "spot_edge_c": 26,
+      "spot_edge_f": 78.8,
+      "spot_2m_c": 25,
+      "spot_2m_f": 77.0
+    },
+    {
+      "body_weight_g": 590,
+      "body_weight_lb": 1.3,
+      "whole_house_c": 24,
+      "whole_house_f": 75.2,
+      "spot_edge_c": 25,
+      "spot_edge_f": 77.0,
+      "spot_2m_c": null,
+      "spot_2m_f": null
+    },
+    {
+      "body_weight_g": 790,
+      "body_weight_lb": 1.74,
+      "whole_house_c": 23,
+      "whole_house_f": 73.4,
+      "spot_edge_c": 24,
+      "spot_edge_f": 75.2,
+      "spot_2m_c": null,
+      "spot_2m_f": null
+    },
+    {
+      "body_weight_g": 1015,
+      "body_weight_lb": 2.24,
+      "whole_house_c": 22,
+      "whole_house_f": 71.6,
+      "spot_edge_c": 23,
+      "spot_edge_f": 73.4,
+      "spot_2m_c": null,
+      "spot_2m_f": null
+    },
+    {
+      "body_weight_g": 1260,
+      "body_weight_lb": 2.78,
+      "whole_house_c": 21,
+      "whole_house_f": 69.8,
+      "spot_edge_c": 21,
+      "spot_edge_f": 69.8,
+      "spot_2m_c": null,
+      "spot_2m_f": null
+    },
+    {
+      "body_weight_g": 1530,
+      "body_weight_lb": 3.37,
+      "whole_house_c": 20,
+      "whole_house_f": 68.0,
+      "spot_edge_c": 20,
+      "spot_edge_f": 68.0,
+      "spot_2m_c": null,
+      "spot_2m_f": null
+    }
+  ],
+  "temperature_humidity_interaction": [
+    {
+      "body_weight_g": 44,
+      "body_weight_lb": 0.1,
+      "rh_40_c": 36.0,
+      "rh_40_f": 96.8,
+      "rh_50_c": 33.2,
+      "rh_50_f": 91.8,
+      "rh_60_c": 30.8,
+      "rh_60_f": 87.4,
+      "rh_70_c": 29.2,
+      "rh_70_f": 84.6
+    },
+    {
+      "body_weight_g": 100,
+      "body_weight_lb": 0.22,
+      "rh_40_c": 33.7,
+      "rh_40_f": 92.7,
+      "rh_50_c": 31.2,
+      "rh_50_f": 88.2,
+      "rh_60_c": 28.9,
+      "rh_60_f": 84.0,
+      "rh_70_c": 27.3,
+      "rh_70_f": 81.1
+    },
+    {
+      "body_weight_g": 180,
+      "body_weight_lb": 0.4,
+      "rh_40_c": 32.5,
+      "rh_40_f": 90.5,
+      "rh_50_c": 29.9,
+      "rh_50_f": 85.8,
+      "rh_60_c": 27.7,
+      "rh_60_f": 81.9,
+      "rh_70_c": 26.0,
+      "rh_70_f": 78.8
+    },
+    {
+      "body_weight_g": 290,
+      "body_weight_lb": 0.64,
+      "rh_40_c": 31.3,
+      "rh_40_f": 88.3,
+      "rh_50_c": 28.6,
+      "rh_50_f": 83.5,
+      "rh_60_c": 26.7,
+      "rh_60_f": 80.1,
+      "rh_70_c": 25.0,
+      "rh_70_f": 77.0
+    },
+    {
+      "body_weight_g": 425,
+      "body_weight_lb": 0.94,
+      "rh_40_c": 30.2,
+      "rh_40_f": 86.4,
+      "rh_50_c": 27.8,
+      "rh_50_f": 82.0,
+      "rh_60_c": 25.7,
+      "rh_60_f": 78.3,
+      "rh_70_c": 24.0,
+      "rh_70_f": 75.2
+    },
+    {
+      "body_weight_g": 590,
+      "body_weight_lb": 1.3,
+      "rh_40_c": 29.0,
+      "rh_40_f": 84.2,
+      "rh_50_c": 26.8,
+      "rh_50_f": 80.2,
+      "rh_60_c": 24.8,
+      "rh_60_f": 76.6,
+      "rh_70_c": 23.0,
+      "rh_70_f": 73.4
+    },
+    {
+      "body_weight_g": 790,
+      "body_weight_lb": 1.74,
+      "rh_40_c": 27.7,
+      "rh_40_f": 81.9,
+      "rh_50_c": 25.5,
+      "rh_50_f": 77.9,
+      "rh_60_c": 23.6,
+      "rh_60_f": 74.5,
+      "rh_70_c": 21.9,
+      "rh_70_f": 71.4
+    },
+    {
+      "body_weight_g": 1015,
+      "body_weight_lb": 2.24,
+      "rh_40_c": 26.9,
+      "rh_40_f": 80.4,
+      "rh_50_c": 24.7,
+      "rh_50_f": 76.5,
+      "rh_60_c": 22.7,
+      "rh_60_f": 72.9,
+      "rh_70_c": 21.3,
+      "rh_70_f": 70.3
+    },
+    {
+      "body_weight_g": 1260,
+      "body_weight_lb": 2.78,
+      "rh_40_c": 25.7,
+      "rh_40_f": 78.3,
+      "rh_50_c": 23.5,
+      "rh_50_f": 74.3,
+      "rh_60_c": 21.7,
+      "rh_60_f": 71.1,
+      "rh_70_c": 20.2,
+      "rh_70_f": 68.4
+    },
+    {
+      "body_weight_g": 1530,
+      "body_weight_lb": 3.37,
+      "rh_40_c": 24.8,
+      "rh_40_f": 76.6,
+      "rh_50_c": 22.7,
+      "rh_50_f": 72.9,
+      "rh_60_c": 20.7,
+      "rh_60_f": 69.3,
+      "rh_70_c": 19.3,
+      "rh_70_f": 66.7
+    }
+  ],
+  "water_temperature_effects": [
+    {
+      "temperature_c": "<5",
+      "temperature_f": "41.0",
+      "effect": "Too cold, reduced water consumption"
+    },
+    {
+      "temperature_c": "18-21",
+      "temperature_f": "64.4-69.8",
+      "effect": "Ideal"
+    },
+    {
+      "temperature_c": ">30",
+      "temperature_f": "86.0",
+      "effect": "Too warm, reduced water consumption"
+    },
+    {
+      "temperature_c": ">44",
+      "temperature_f": "111.2",
+      "effect": "Birds refuse to drink"
+    }
+  ],
+  "drinking_space_brooding": [
+    {
+      "drinker_type": "Bell",
+      "space": "8 drinkers per 1,000 chicks (125 chicks per drinker)"
+    },
+    {
+      "drinker_type": "Nipple",
+      "space": "10-12 birds per nipple"
+    },
+    {
+      "drinker_type": "Mini-drinker or tray",
+      "space": "12 mini-drinkers per 1,000 chicks"
+    }
+  ],
+  "crop_fill_targets": [
+    {
+      "time_hours": 2,
+      "minimum_crop_fill_percent": 75
+    },
+    {
+      "time_hours": 4,
+      "minimum_crop_fill_percent": 80
+    },
+    {
+      "time_hours": 8,
+      "minimum_crop_fill_percent": 80
+    },
+    {
+      "time_hours": 12,
+      "minimum_crop_fill_percent": 85
+    },
+    {
+      "time_hours": 24,
+      "minimum_crop_fill_percent": 95
+    }
+  ],
+  "flock_uniformity_sampling": [
+    {
+      "uniformity_level": "Uniform",
+      "cv_percent": 8,
+      "uniformity_percent": 79,
+      "minimum_birds": 65
+    },
+    {
+      "uniformity_level": "Moderately Uniform",
+      "cv_percent": 10,
+      "uniformity_percent": 68,
+      "minimum_birds": 100
+    },
+    {
+      "uniformity_level": "Poorly Uniform",
+      "cv_percent": 12,
+      "uniformity_percent": 60,
+      "minimum_birds": 140
+    }
+  ],
+  "cv_uniformity_relationship": [
+    {
+      "uniformity_percent": 95,
+      "cv_percent": 5
+    },
+    {
+      "uniformity_percent": 90,
+      "cv_percent": 6
+    },
+    {
+      "uniformity_percent": 85,
+      "cv_percent": 7
+    },
+    {
+      "uniformity_percent": 79,
+      "cv_percent": 8
+    },
+    {
+      "uniformity_percent": 73,
+      "cv_percent": 9
+    },
+    {
+      "uniformity_percent": 68,
+      "cv_percent": 10
+    },
+    {
+      "uniformity_percent": 64,
+      "cv_percent": 11
+    },
+    {
+      "uniformity_percent": 60,
+      "cv_percent": 12
+    },
+    {
+      "uniformity_percent": 56,
+      "cv_percent": 13
+    },
+    {
+      "uniformity_percent": 52,
+      "cv_percent": 14
+    },
+    {
+      "uniformity_percent": 50,
+      "cv_percent": 15
+    },
+    {
+      "uniformity_percent": 47,
+      "cv_percent": 16
+    }
+  ],
+  "brooding_cv_assessment": [
+    {
+      "cv_difference": 0,
+      "assessment": "Excellent"
+    },
+    {
+      "cv_difference": 1,
+      "assessment": "Very Good"
+    },
+    {
+      "cv_difference": 2,
+      "assessment": "Good"
+    },
+    {
+      "cv_difference": 3,
+      "assessment": "Average"
+    },
+    {
+      "cv_difference": 4,
+      "assessment": "Poor"
+    },
+    {
+      "cv_difference": 5,
+      "assessment": "Very Poor"
+    }
+  ],
+  "feed_form_specifications": [
+    {
+      "age_days": "0-10",
+      "feed_form": "Crumble",
+      "particle_size": "2-3.5 mm (0.08-0.14 in) diameter"
+    },
+    {
+      "age_days": "11-18",
+      "feed_form": "Pellet",
+      "particle_size": "3-5 mm (0.12-0.20 in) diameter, 5-7 mm (0.20-0.28 in) length"
+    },
+    {
+      "age_days": "19-finish",
+      "feed_form": "Pellet",
+      "particle_size": "3-5 mm (0.12-0.20 in) diameter, 6-10 mm (0.24-0.40 in) length"
+    }
+  ],
+  "whole_grain_inclusion": [
+    {
+      "feed_form": "Starter",
+      "inclusion_rate": "Zero"
+    },
+    {
+      "feed_form": "Grower",
+      "inclusion_rate": "Gradual increase to 15-20%"
+    },
+    {
+      "feed_form": "Finisher",
+      "inclusion_rate": "Gradual increase to 25-30%"
+    }
+  ],
+  "nipple_flow_rates": [
+    {
+      "bird_age_days": "0-7",
+      "flow_rate_ml_min": "20-29",
+      "flow_rate_oz_min": "0.68-0.98"
+    },
+    {
+      "bird_age_days": "8-14",
+      "flow_rate_ml_min": "30-39",
+      "flow_rate_oz_min": "1.01-1.32"
+    },
+    {
+      "bird_age_days": "15-21",
+      "flow_rate_ml_min": "40-49",
+      "flow_rate_oz_min": "1.35-1.66"
+    },
+    {
+      "bird_age_days": "22-28",
+      "flow_rate_ml_min": "50-69",
+      "flow_rate_oz_min": "1.69-2.33"
+    },
+    {
+      "bird_age_days": ">28",
+      "flow_rate_ml_min": "70-100",
+      "flow_rate_oz_min": "2.37-3.38"
+    }
+  ],
+  "drinker_requirements_post_brooding": [
+    {
+      "drinker_type": "Nipple (<3 kg/6.6 lb)",
+      "birds_per_nipple": 12
+    },
+    {
+      "drinker_type": "Nipple (>3 kg/6.6 lb)",
+      "birds_per_nipple": 9
+    },
+    {
+      "drinker_type": "Bell (40 cm/15.7 in diameter)",
+      "per_1000_birds": 8
+    }
+  ],
+  "feeding_space_requirements": [
+    {
+      "feeder_type": "Pan (brooding)",
+      "space": "100 chicks per pan"
+    },
+    {
+      "feeder_type": "Pan (post-brooding)",
+      "space": "45-80 birds per pan (lower ratio for >3.5 kg/7.7 lb)"
+    },
+    {
+      "feeder_type": "Flat Chain/Auger",
+      "space": "2.5 cm/bird (0.98 in/bird) - both sides"
+    },
+    {
+      "feeder_type": "Tube (38 cm/15.0 in diameter)",
+      "space": "70 birds per tube"
+    }
+  ],
+  "air_quality_standards": [
+    {
+      "contaminant": "Ammonia (NH3)",
+      "ideal_ppm": "<10",
+      "notes": "Detected by smell at 20+ ppm; >10 damages lungs; >20 increases respiratory disease susceptibility; >25 may reduce growth"
+    },
+    {
+      "contaminant": "Carbon Dioxide (CO2)",
+      "ideal_ppm": "<3,000",
+      "notes": ">3,500 causes ascites; fatal at high levels"
+    },
+    {
+      "contaminant": "Carbon Monoxide (CO)",
+      "ideal_ppm": "<10",
+      "notes": ">50 affects health; fatal at high levels"
+    },
+    {
+      "contaminant": "Dust",
+      "ideal_ppm": "Minimize",
+      "notes": "Damages respiratory tract lining; increases disease susceptibility"
+    },
+    {
+      "contaminant": "Humidity (RH)",
+      "ideal_ppm": "50-60% after brooding",
+      "notes": ">70% or <50% at >29°C affects performance"
+    }
+  ],
+  "minimum_ventilation_rates": [
+    {
+      "avg_weight_kg": 0.05,
+      "avg_weight_lb": 0.11,
+      "rate_m3_hr": 0.09,
+      "rate_ft3_min": 0.05
+    },
+    {
+      "avg_weight_kg": 0.2,
+      "avg_weight_lb": 0.44,
+      "rate_m3_hr": 0.26,
+      "rate_ft3_min": 0.15
+    },
+    {
+      "avg_weight_kg": 0.5,
+      "avg_weight_lb": 1.1,
+      "rate_m3_hr": 0.51,
+      "rate_ft3_min": 0.3
+    },
+    {
+      "avg_weight_kg": 1.0,
+      "avg_weight_lb": 2.21,
+      "rate_m3_hr": 0.86,
+      "rate_ft3_min": 0.51
+    },
+    {
+      "avg_weight_kg": 1.5,
+      "avg_weight_lb": 3.31,
+      "rate_m3_hr": 1.17,
+      "rate_ft3_min": 0.69
+    },
+    {
+      "avg_weight_kg": 2.0,
+      "avg_weight_lb": 4.41,
+      "rate_m3_hr": 1.45,
+      "rate_ft3_min": 0.86
+    },
+    {
+      "avg_weight_kg": 2.5,
+      "avg_weight_lb": 5.51,
+      "rate_m3_hr": 1.72,
+      "rate_ft3_min": 1.01
+    },
+    {
+      "avg_weight_kg": 3.0,
+      "avg_weight_lb": 6.62,
+      "rate_m3_hr": 1.97,
+      "rate_ft3_min": 1.16
+    },
+    {
+      "avg_weight_kg": 3.5,
+      "avg_weight_lb": 7.72,
+      "rate_m3_hr": 2.21,
+      "rate_ft3_min": 1.3
+    },
+    {
+      "avg_weight_kg": 4.0,
+      "avg_weight_lb": 8.82,
+      "rate_m3_hr": 2.44,
+      "rate_ft3_min": 1.44
+    },
+    {
+      "avg_weight_kg": 4.5,
+      "avg_weight_lb": 9.92,
+      "rate_m3_hr": 2.67,
+      "rate_ft3_min": 1.57
+    },
+    {
+      "avg_weight_kg": 5.0,
+      "avg_weight_lb": 11.03,
+      "rate_m3_hr": 2.89,
+      "rate_ft3_min": 1.7
+    }
+  ],
+  "lighting_program": [
+    {
+      "age_days": "Day 0 (placement)",
+      "light_hours": 23,
+      "dark_hours": 1,
+      "light_intensity_lux": "30-40",
+      "light_intensity_fc": "2.8-3.7",
+      "notes": "Immediately after placement; uniform distribution"
+    },
+    {
+      "age_days": "Day 1-7",
+      "light_hours": "Gradually reduce to 18-19",
+      "dark_hours": "Gradually increase to 5-6",
+      "light_intensity_lux": "30-40",
+      "light_intensity_fc": "2.8-3.7",
+      "notes": "Gradual transition to avoid stress"
+    },
+    {
+      "age_days": "After Day 7",
+      "light_hours": "18-20",
+      "dark_hours": "4-6 (minimum 4 continuous)",
+      "light_intensity_lux": "5-10",
+      "light_intensity_fc": "0.46-0.93",
+      "notes": "Lights on at same time each day; comply with local laws"
+    },
+    {
+      "age_days": "Pre-catching (3 days before)",
+      "light_hours": 23,
+      "dark_hours": 1,
+      "light_intensity_lux": "5-10",
+      "light_intensity_fc": "0.46-0.93",
+      "notes": "Stabilize feed intake patterns; help keep birds calm"
+    }
+  ],
+  "lamp_types": [
+    {
+      "type": "Incandescent",
+      "advantages": "Good spectral range, can dim, inexpensive",
+      "disadvantages": "Inefficient, short life (700-1000 hr), high energy cost",
+      "lumen_per_watt": "15-25",
+      "spectrum": "Warm light, mixture of wavelengths"
+    },
+    {
+      "type": "Fluorescent/Compact Fluorescent",
+      "advantages": "More efficient than incandescent, longer life, reduces electricity cost",
+      "disadvantages": "Contains mercury, cannot dim, flicker issues, slow warm-up",
+      "lumen_per_watt": "50-100",
+      "spectrum": "White light 400-700 nm, cool and warm available"
+    },
+    {
+      "type": "LED",
+      "advantages": "Energy efficient (200 lm/W), long life (50,000 hr), specific colors, some dimmable",
+      "disadvantages": "High initial cost, cheaper variants unsuitable for poultry houses, potential flicker",
+      "lumen_per_watt": "200",
+      "spectrum": "Full spectrum, customizable"
+    },
+    {
+      "type": "Halogen",
+      "advantages": "Stable color temperature, almost no light decay, more efficient than incandescent",
+      "disadvantages": "Not suited to dusty environments, less efficient than LED, emits heat",
+      "lumen_per_watt": "20-30",
+      "spectrum": "Continuous spectrum shifted toward blue"
+    },
+    {
+      "type": "Sodium Vapor",
+      "advantages": "Energy efficient, long life, consistent warm color",
+      "disadvantages": "Sodium hazardous, warm-up time (5-15 min), requires ballast",
+      "lumen_per_watt": "100-150",
+      "spectrum": "Warm light, highest intensity in yellow/red/orange, ~2100 K"
+    }
+  ],
+  "lighting_color_temperature": [
+    {
+      "target_weight": "<2 kg (4.4 lb)",
+      "color_temperature_k": "5,000-6,000",
+      "dominant_wavelength": "Cool/blue"
+    },
+    {
+      "target_weight": ">2 kg (4.4 lb)",
+      "color_temperature_k": "3,500-4,500",
+      "dominant_wavelength": "Warm"
+    }
+  ],
+  "light_wavelength_effects": [
+    {
+      "wavelength_range_nm": "415-560",
+      "color": "Violet to green",
+      "effect": "Better growth rate"
+    },
+    {
+      "wavelength_range_nm": "450-560",
+      "color": "Blue/green",
+      "effect": "Promotes calmness, improves FCR, livability, leg health, reduces processing rejects"
+    },
+    {
+      "wavelength_range_nm": ">620",
+      "color": "Red",
+      "effect": "Increases aggression through increased testosterone production"
+    }
+  ],
+  "litter_materials": [
+    {
+      "material": "Pine Shavings/Sawdust",
+      "advantages": "Preferred in many areas",
+      "disadvantages": "Increasingly expensive, limited supply"
+    },
+    {
+      "material": "Hardwood Shavings/Sawdust",
+      "advantages": "Better accessibility",
+      "disadvantages": "Often high moisture, mold risk if stored improperly"
+    },
+    {
+      "material": "Pine/Hardwood Chips",
+      "advantages": "Used successfully in many areas",
+      "disadvantages": "May increase breast blisters if too wet"
+    },
+    {
+      "material": "Rice Hulls",
+      "advantages": "Inexpensive where available",
+      "disadvantages": "Young chicks may eat litter, poor moisture-holding"
+    },
+    {
+      "material": "Peanut Hulls",
+      "advantages": "Inexpensive in peanut areas",
+      "disadvantages": "Tendency to cake, mold risk, pesticide issues"
+    },
+    {
+      "material": "Sand",
+      "advantages": "Can use in arid areas on concrete",
+      "disadvantages": "Needs good management, difficult cold-weather brooding, ample drying time needed"
+    },
+    {
+      "material": "Straw/Hay",
+      "advantages": "Best used 50/50 with wood shavings",
+      "disadvantages": "High caking incidence, mold risk, slow breakdown"
+    },
+    {
+      "material": "Processed Paper",
+      "advantages": "Top dressing may decrease caking",
+      "disadvantages": "Difficult in humid conditions, tendency to cake"
+    }
+  ],
+  "stocking_density_regulations": [
+    {
+      "region": "European Union (EU Broiler Welfare Directive 2007)",
+      "standard": "33 kg/m² (6.7 lb/ft²)",
+      "conditions": "Standard"
+    },
+    {
+      "region": "European Union",
+      "standard": "39 kg/m² (8.0 lb/ft²)",
+      "conditions": "If stricter standards met"
+    },
+    {
+      "region": "European Union",
+      "standard": "42 kg/m² (8.6 lb/ft²)",
+      "conditions": "If exceptionally high welfare standards met over prolonged period"
+    },
+    {
+      "region": "USA (NCC 2010)",
+      "standard": "32 kg/m² (6.5 lb/ft²)",
+      "conditions": "Birds below 4.5 lb (2.04 kg)"
+    },
+    {
+      "region": "USA (NCC 2010)",
+      "standard": "37 kg/m² (7.5 lb/ft²)",
+      "conditions": "Birds 4.5-5.5 lb (2.04-2.49 kg)"
+    },
+    {
+      "region": "USA (NCC 2010)",
+      "standard": "42 kg/m² (8.5 lb/ft²)",
+      "conditions": "Birds above 5.5 lb (2.49 kg)"
+    },
+    {
+      "region": "Hot Climate - Controlled Environment",
+      "standard": "30 kg/m² (6.1 lb/ft²)",
+      "conditions": "Maximum at processing"
+    },
+    {
+      "region": "Hot Climate - Open-sided (poor control)",
+      "standard": "20-25 kg/m² (4.1-5.1 lb/ft²)",
+      "conditions": "Maximum at processing"
+    },
+    {
+      "region": "Hot Climate - Open-sided (hottest times)",
+      "standard": "16-18 kg/m² (3.3-3.7 lb/ft²)",
+      "conditions": "Maximum at processing"
+    }
+  ],
+  "water_quality_criteria": [
+    {
+      "criteria": "Total Dissolved Solids (TDS)",
+      "concentration_ppm": "<1,000",
+      "comments": "Good"
+    },
+    {
+      "criteria": "Total Dissolved Solids (TDS)",
+      "concentration_ppm": "1,000-3,000",
+      "comments": "Satisfactory; wet droppings at upper limit"
+    },
+    {
+      "criteria": "Total Dissolved Solids (TDS)",
+      "concentration_ppm": "3,000-5,000",
+      "comments": "Poor; wet droppings, reduced intake, poor growth, increased mortality"
+    },
+    {
+      "criteria": "Total Dissolved Solids (TDS)",
+      "concentration_ppm": ">5,000",
+      "comments": "Unsatisfactory"
+    },
+    {
+      "criteria": "Hardness",
+      "concentration_ppm": "<100",
+      "comments": "Soft; good"
+    },
+    {
+      "criteria": "Hardness",
+      "concentration_ppm": ">100",
+      "comments": "Hard; satisfactory for poultry but interferes with soap/disinfectants"
+    },
+    {
+      "criteria": "pH",
+      "concentration_ppm": "<6",
+      "comments": "Poor; performance problems, corrosion"
+    },
+    {
+      "criteria": "pH",
+      "concentration_ppm": "6.5-8.5",
+      "comments": "Satisfactory; recommended for poultry"
+    },
+    {
+      "criteria": "pH",
+      "concentration_ppm": ">8.6",
+      "comments": "Unsatisfactory"
+    },
+    {
+      "criteria": "Sulfates",
+      "concentration_ppm": "<200",
+      "comments": "Satisfactory"
+    },
+    {
+      "criteria": "Sulfates",
+      "concentration_ppm": "200-250",
+      "comments": "Maximum desirable"
+    },
+    {
+      "criteria": "Sulfates",
+      "concentration_ppm": "250-500",
+      "comments": "May have laxative effect"
+    },
+    {
+      "criteria": "Sulfates",
+      "concentration_ppm": ">1,000",
+      "comments": "Unsatisfactory; health hazard"
+    },
+    {
+      "criteria": "Chloride",
+      "concentration_ppm": "<250",
+      "comments": "Satisfactory; maximum desirable"
+    },
+    {
+      "criteria": "Chloride",
+      "concentration_ppm": ">500",
+      "comments": "Unsatisfactory; laxative effect, wet droppings"
+    },
+    {
+      "criteria": "Nitrate Nitrogen",
+      "concentration_ppm": "10",
+      "comments": "Maximum; sometimes 3 mg/L affects performance"
+    },
+    {
+      "criteria": "Iron",
+      "concentration_ppm": "<0.3",
+      "comments": "Satisfactory"
+    },
+    {
+      "criteria": "Iron",
+      "concentration_ppm": ">0.3",
+      "comments": "Unsatisfactory; iron bacteria growth"
+    },
+    {
+      "criteria": "Bacterial Coliforms",
+      "concentration_ppm": "0 CFU/mL",
+      "comments": "Ideal; levels above indicate fecal contamination"
+    }
+  ],
+  "floor_treatments": [
+    {
+      "compound": "Boric acid",
+      "rate_kg_m2": "0.05-0.1",
+      "rate_lbs_100ft2": "1-2",
+      "purpose": "Kills darkling beetles"
+    },
+    {
+      "compound": "Salt (NaCl)",
+      "rate_kg_m2": "0.25",
+      "rate_lbs_100ft2": "5",
+      "purpose": "Reduces clostridium counts"
+    },
+    {
+      "compound": "Sulphur powder",
+      "rate_kg_m2": "0.1",
+      "rate_lbs_100ft2": "2",
+      "purpose": "Lowers pH"
+    },
+    {
+      "compound": "Lime (calcium oxide/hydroxide)",
+      "rate_kg_m2": "0.6",
+      "rate_lbs_100ft2": "12",
+      "purpose": "Disinfection"
+    }
+  ],
+  "performance_parameters": {
+    "production_efficiency_factor": {
+      "formula": "Livability(%) × Live Weight(kg) × 100 / (Age(days) × FCR)",
+      "example_1": {
+        "age": 35,
+        "live_weight_kg": 2.296,
+        "livability_percent": 97.2,
+        "fcr": 1.399,
+        "pef": 456
+      },
+      "example_2": {
+        "age": 45,
+        "live_weight_kg": 3.295,
+        "livability_percent": 96.55,
+        "fcr": 1.606,
+        "pef": 440
+      },
+      "notes": "Higher value = better technical performance; biased by daily gain"
+    },
+    "coefficient_of_variation": {
+      "formula": "Standard Deviation × 100 / Average Body Weight",
+      "example": {
+        "avg_weight_g": 2550,
+        "std_dev_g": 250,
+        "cv_percent": 9.8
+      },
+      "notes": "Lower CV% = more uniform flock"
+    },
+    "feed_conversion_ratio": {
+      "formula": "Total Feed Consumed / Total Live Weight",
+      "example": {
+        "total_feed_g": 36807,
+        "total_live_weight_g": 31480,
+        "fcr": 1.169
+      },
+      "notes": "Lower FCR = more efficient"
+    },
+    "adjusted_fcr": {
+      "formula": "Actual FCR + (Target Body Weight - Actual Body Weight) / Factor",
+      "factor_as_hatched": "4.5 kg / 4,500 g / 10 lb",
+      "notes": "Useful for comparing at common target weight; avoid beyond ±0.5 lb/227g of actual weight"
+    }
+  },
+  "conversion_tables": {
+    "length": {
+      "1 meter": "3.281 feet",
+      "1 foot": "0.305 meter",
+      "1 centimeter": "0.394 inch",
+      "1 inch": "2.54 centimeters"
+    },
+    "area": {
+      "1 square meter": "10.76 square feet",
+      "1 square foot": "0.093 square meter"
+    },
+    "volume": {
+      "1 liter": "0.22 imperial gallon / 0.264 US gallon",
+      "1 imperial gallon": "4.54 liters",
+      "1 US gallon": "3.79 liters",
+      "1 cubic meter": "35.31 cubic feet",
+      "1 cubic foot": "0.028 cubic meter"
+    },
+    "weight": {
+      "1 kilogram": "2.205 pounds",
+      "1 pound": "0.454 kilogram",
+      "1 gram": "0.035 ounce",
+      "1 ounce": "28.35 grams"
+    },
+    "temperature": {
+      "celsius_to_fahrenheit": "(°C × 1.8) + 32",
+      "fahrenheit_to_celsius": "(°F - 32) ÷ 1.8"
+    },
+    "light": {
+      "1 foot candle": "10.76 lux",
+      "1 lux": "0.093 foot candle"
+    },
+    "stocking_density": {
+      "1 sq ft/bird": "10.76 birds/m²",
+      "10 birds/m²": "1.08 sq ft/bird",
+      "1 kg/m²": "0.205 lb/ft²",
+      "1 lb/ft²": "4.88 kg/m²"
+    }
+  },
+  "cleaning_disinfection_checklist": [
+    {
+      "area": "Internal Bird Areas",
+      "checks": [
+        "Visual assessment for missed areas",
+        "Cleaning, disinfection, final fumigation completed",
+        "Efficacy results received (TVC/Salmonella)",
+        "Waste materials disposed appropriately"
+      ]
+    },
+    {
+      "area": "External Farm Area",
+      "checks": [
+        "External building surfaces cleaned and disinfected",
+        "External concrete walkways pressure washed with hot water",
+        "Grass/vegetation cut back to prevent rodent nesting"
+      ]
+    },
+    {
+      "area": "Farm Office/Amenity Buildings",
+      "checks": [
+        "Washed, cleaned, disinfected",
+        "Waste appropriately disposed"
+      ]
+    },
+    {
+      "area": "Rodent Control Program",
+      "checks": [
+        "Check for rodent activity",
+        "Rodent control stations re-baited"
+      ]
+    },
+    {
+      "area": "Equipment",
+      "checks": [
+        "Farm equipment cleaned and disinfected",
+        "Feed system cleaned and disinfected",
+        "Water system cleaned, disinfected, and flushed",
+        "Spare equipment stored or removed"
+      ]
+    },
+    {
+      "area": "Protective Clothing",
+      "checks": [
+        "All clothing laundered",
+        "Rubber boots washed and disinfected"
+      ]
+    },
+    {
+      "area": "Farm Hygiene",
+      "checks": [
+        "Boot changes/covers available",
+        "Foot baths refreshed with appropriate chemical",
+        "Access to farm restricted",
+        "Visitor protocols in place"
+      ]
+    }
+  ],
+  "pre_catch_checklist": [
+    {
+      "item": "Time calculation",
+      "check": "Time to catch and transport calculated correctly"
+    },
+    {
+      "item": "Equipment",
+      "check": "Crates/modules and trucks calculated; all equipment clean, disinfected, in good condition"
+    },
+    {
+      "item": "Ground condition",
+      "check": "Smooth exit for trucks; ground repaired, compacted, leveled"
+    },
+    {
+      "item": "Litter",
+      "check": "Wet litter replaced for ease of catching"
+    },
+    {
+      "item": "Feeding equipment",
+      "check": "Removed or repositioned above head height"
+    },
+    {
+      "item": "Penning",
+      "check": "Partitions available for large houses"
+    },
+    {
+      "item": "Light intensity",
+      "check": "Reduced; no sudden increase; headlamps or blue light used; curtains over doors if daytime"
+    },
+    {
+      "item": "Ventilation",
+      "check": "No heat buildup; sufficient air movement; heaters turned off"
+    }
+  ],
+  "troubleshooting_brooding": [
+    {
+      "issue": "Poor Chick Quality / Increased DOA",
+      "investigate": [
+        "Source flock health and hygiene status",
+        "Egg handling, storage, and transport",
+        "Hatchery sanitation, incubation, and management",
+        "Chick processing, handling, and transport",
+        "Inadequate diet of source flock"
+      ],
+      "likely_causes": [
+        "Health and hygiene status of source flock, hatchery, and equipment",
+        "Incorrect egg storage parameters (RH, temperatures)",
+        "Incorrect moisture loss during incubation",
+        "Incorrect incubation temperature",
+        "Dehydration from excessive hatch spread or late chick removal"
+      ]
+    },
+    {
+      "issue": "Small Chicks on Days 1-4",
+      "investigate": [
+        "Crop fill in first 2-4 hours post-placement",
+        "Availability and accessibility to feed and water",
+        "Bird comfort and welfare",
+        "Light intensity uniformity",
+        "Brooding setup"
+      ],
+      "likely_causes": [
+        "Less than 75-80% crop fill by 2-4 hours",
+        "Young donor flocks",
+        "Weak chicks",
+        "Equipment location and maintenance issues",
+        "Inappropriate brooding temperature and environment"
+      ]
+    },
+    {
+      "issue": "Runted and Stunted Chicks (4-7 days)",
+      "investigate": [
+        "Flock source",
+        "Hydration status",
+        "Brooding conditions",
+        "Feed quality and accessibility",
+        "Downtime between flocks",
+        "Disease challenge"
+      ],
+      "likely_causes": [
+        "Chicks from wide range of donor flock ages",
+        "Chicks unable to find or reach water",
+        "Incorrect brooding temperatures",
+        "Chicks unable to find feed or poor feed quality",
+        "Short downtimes (<10 days)",
+        "Inadequate cleaning and disinfection",
+        "Disease",
+        "Poor biosecurity and hygiene practices"
+      ]
+    }
+  ],
+  "troubleshooting_after_7days": [
+    {
+      "issue": "Disease (metabolic, bacterial, viral, fungal, protozoal, parasitic, toxins)",
+      "investigate": [
+        "Broiler farm hygiene",
+        "Local disease challenge",
+        "Vaccination and disease prevention strategies",
+        "Feed quality and supply",
+        "Lighting and ventilation"
+      ],
+      "likely_causes": [
+        "Poor environmental conditions",
+        "Poor biosecurity",
+        "High disease challenge",
+        "Low disease protection",
+        "Inadequate disease prevention implementation",
+        "Poor feed quality",
+        "Poor bird access to feed",
+        "Excessive or insufficient ventilation"
+      ]
+    },
+    {
+      "issue": "Unusual Bird Behavior",
+      "investigate": [
+        "Temperature management",
+        "CO2 levels",
+        "Immunosuppressive disorders"
+      ],
+      "likely_causes": [
+        "Inadequate environmental management",
+        "Inadequate equipment",
+        "Inadequate bird comfort and welfare"
+      ]
+    },
+    {
+      "issue": "High Number of Birds DOA to Processing Plant",
+      "investigate": [
+        "Flock records and data",
+        "Health status during growing period",
+        "History of feed, water, or power outages",
+        "Equipment hazards",
+        "Bird handling by catchers/handlers/transporters",
+        "Conditions during catching and transporting"
+      ],
+      "likely_causes": [
+        "Health issues during growing period",
+        "Improper bird handling",
+        "Harsh conditions during handling/catching/transport"
+      ]
+    }
+  ],
+  "problem_solving_poor_performance": [
+    {
+      "issue": "High early mortality (<7 days)",
+      "possible_causes": [
+        "Poor chick quality",
+        "Incorrect brooding",
+        "Disease",
+        "Appetite issues"
+      ],
+      "actions": [
+        "Check hatchery practice, egg handling, and hygiene",
+        "Reassess brooding practice",
+        "Post-mortems on dead chicks - take veterinary advice",
+        "Measure and achieve target crop fill levels",
+        "Check feed and water availability and accessibility"
+      ]
+    },
+    {
+      "issue": "High mortality (post-7 days)",
+      "possible_causes": [
+        "Metabolic diseases",
+        "Infectious diseases",
+        "Leg problems"
+      ],
+      "actions": [
+        "Check ventilation rates and feed formulation",
+        "Avoid excessive early growth rates",
+        "Establish cause via post-mortem",
+        "Check water consumption and mineral levels"
+      ]
+    },
+    {
+      "issue": "Poor early growth and uniformity",
+      "possible_causes": [
+        "Nutrition",
+        "Chick quality",
+        "Environmental conditions",
+        "Appetite",
+        "Downtime",
+        "Disease"
+      ],
+      "actions": [
+        "Check starter ration quality and availability",
+        "Check water supply",
+        "Reassess brooding practice",
+        "Check temperature, humidity, daylength, light uniformity",
+        "Ensure downtime >10 days",
+        "Seek veterinary advice"
+      ]
+    },
+    {
+      "issue": "Poor late growth and uniformity",
+      "possible_causes": [
+        "Low nutrient intake",
+        "Infectious disease",
+        "Environmental conditions"
+      ],
+      "actions": [
+        "Check feed quality and formulation",
+        "Avoid excessive early growth restriction",
+        "Check ventilation, stocking density, house temperatures",
+        "Check water and feed availability"
+      ]
+    },
+    {
+      "issue": "Poor litter quality",
+      "possible_causes": [
+        "Nutrition",
+        "Environment",
+        "Infectious disease"
+      ],
+      "actions": [
+        "Improve fat quality, avoid excessive salts/protein",
+        "Ensure sufficient litter depth, appropriate material",
+        "Adjust drinkers, maintain ventilation and humidity control",
+        "Consult veterinarian if necessary"
+      ]
+    },
+    {
+      "issue": "Poor feed conversion",
+      "possible_causes": [
+        "Poor growth",
+        "Feed wastage",
+        "Environment"
+      ],
+      "actions": [
+        "Check feeder settings/adjustments",
+        "Allow birds to clear feeders once daily from 10-12 days",
+        "Check house temperature based on bird behavior",
+        "Ensure effective cleaning and disinfection"
+      ]
+    }
+  ],
+  "processing_rejects": [
+    {
+      "issue": "Ascites",
+      "characterized_by": "Fluid gathering in abdominal cavity",
+      "actions": [
+        "Clean and disinfect thoroughly between flocks",
+        "Reduce dust levels and ensure adequate ventilation"
+      ]
+    },
+    {
+      "issue": "Skin Lesions (Cellulitis, Dermatitis, Breast Blisters, Hockburn/Pododermatitis)",
+      "characterized_by": "Various skin discolorations and damage",
+      "actions": [
+        "Maintain appropriate stocking densities and feeding space",
+        "Coordinate lights-on with feed availability",
+        "Adjust feeder height to encourage feeding but reduce resting at pans",
+        "Ensure good feather coverage",
+        "Manage litter quality"
+      ]
+    },
+    {
+      "issue": "Contamination",
+      "characterized_by": "Crop/gut with feed or digesta remaining at processing",
+      "actions": [
+        "Adjust feed withdrawal strategy (8-12 hours before processing)",
+        "Avoid extended feed withdrawal",
+        "Ensure water access until catching",
+        "Review light program"
+      ]
+    },
+    {
+      "issue": "Runts/Stunts, Emaciated",
+      "characterized_by": "Small undersized birds or loss of muscle",
+      "actions": [
+        "Remove runts/stunts that struggle to access feed/water",
+        "Identify and remove emaciated birds during routine checks"
+      ]
+    },
+    {
+      "issue": "Downgrades (Broken Wings/Legs, Bruising)",
+      "characterized_by": "Damaged limbs or bruising areas",
+      "actions": [
+        "Assess bruise color to determine timing",
+        "Maintain high welfare standards during handling and catching",
+        "Retrain if required",
+        "Monitor external catchers"
+      ]
+    },
+    {
+      "issue": "Deep Pectoral Myopathy (Green Muscle Disease)",
+      "characterized_by": "Green/redder areas at inner breast fillet",
+      "actions": [
+        "Minimize wing flapping during growing period",
+        "Catch under low light or blue lights",
+        "Assess bruise color to determine timing"
+      ]
+    },
+    {
+      "issue": "Dead on Arrival (DOA)",
+      "characterized_by": "Birds dead in transport crates",
+      "actions": [
+        "Ensure proper crate stocking density for season and distance",
+        "Adjust for warmer/colder months",
+        "Use temperature-controlled trailers in extreme climates"
+      ]
+    }
+  ],
+  "stockmanship_senses": {
+    "sight": [
+      "Bird distribution - areas being avoided suggest environmental issues",
+      "Bird respiration - panting indicates temperature/airflow issues",
+      "Bird behavior - drinking, feeding, resting split evenly",
+      "Bird health - posture, alertness, eyes, gait",
+      "Fans, cooling pads, litter condition",
+      "Feeders and drinkers - height, feed presence, leaks",
+      "Lighting - dark spots, intensity, timer function"
+    ],
+    "hearing": [
+      "Bird vocalizations - snicking/sneezing, appropriateness for age",
+      "Feeder mechanical sounds - augers running constantly, feed bridging",
+      "Fan bearings and belts - noise indicates maintenance needed"
+    ],
+    "feel": [
+      "Air - stuffy/humid, cold, hot, air speed",
+      "Feed physical quality - dusty, pellet breakdown",
+      "Litter condition - moisture level (should be friable)"
+    ],
+    "smell": [
+      "Feed - fresh or musty",
+      "Environment - NH3 levels, stale/stuffy air"
+    ]
+  },
+  "bird_assessment": [
+    {
+      "parameter": "Eyes",
+      "standard": "Clear with no signs of irritation"
+    },
+    {
+      "parameter": "Skin",
+      "standard": "Unblemished with no scratches"
+    },
+    {
+      "parameter": "Breast",
+      "standard": "Unblemished with no blisters"
+    },
+    {
+      "parameter": "Feathering",
+      "standard": "Clean with no feathers sticking out"
+    },
+    {
+      "parameter": "Leg health",
+      "standard": "Hocks clean with no irritation marks"
+    },
+    {
+      "parameter": "Feet",
+      "standard": "Footpads clean with no irritation markings"
+    },
+    {
+      "parameter": "Vent",
+      "standard": "Clean with no signs of loose droppings"
+    },
+    {
+      "parameter": "Beak and tongue",
+      "standard": "No nasal discharge, no tongue discoloration or mouth lesions"
+    },
+    {
+      "parameter": "Crop",
+      "standard": "Feeding, no litter content, not too hard or soft"
+    },
+    {
+      "parameter": "General demeanor",
+      "standard": "Alert and active"
+    }
+  ],
+  "chick_quality_assessment": [
+    {
+      "parameter": "Eyes",
+      "standard": "Clear and bright"
+    },
+    {
+      "parameter": "Down",
+      "standard": "Fluffy, dry, yellowish, not sticky"
+    },
+    {
+      "parameter": "Navel",
+      "standard": "Well healed"
+    },
+    {
+      "parameter": "Beak",
+      "standard": "Straight and clean"
+    },
+    {
+      "parameter": "Legs and Feet",
+      "standard": "Straight, hydrated, defect free"
+    }
+  ],
+  "transport_conditions": [
+    {
+      "parameter": "Temperature",
+      "standard": "Adjusted to ensure chick vent temperature 39.4-40.5°C (103-105°F)"
+    },
+    {
+      "parameter": "Relative Humidity",
+      "standard": "50-65%"
+    },
+    {
+      "parameter": "Fresh Air",
+      "standard": "Minimum 0.71 m³/min (25 ft³/min) per 1,000 chicks"
+    },
+    {
+      "parameter": "CO2 Level",
+      "standard": "<3,000 ppm"
+    }
+  ],
+  "feed_withdrawal": {
+    "recommended_period": "8-12 hours before processing",
+    "formula": "Time in house without feed + Catching time + Transport time + Holding time",
+    "weight_loss_after_git_empty": "0.25-0.40% of body weight per hour",
+    "factors_affecting_weight_loss": [
+      "Bird age - higher in older birds",
+      "Sex - higher in males",
+      "House temperature - increases at extremes",
+      "Eating pattern disruption before withdrawal",
+      "Time in transport crates/modules",
+      "Holding temperature"
+    ],
+    "monitoring_indicators": {
+      "excessive_withdrawal": "Watery droppings, watery fluid in small intestine, litter in crop and gizzard",
+      "insufficient_withdrawal": "Feed in crop, fecal contamination at processing"
+    },
+    "key_points": [
+      "Provide unlimited water until catching",
+      "Remove whole grains 2 days before processing",
+      "Do not disturb flock after feed withdrawal begins",
+      "Leave empty feeders down until catching crews arrive"
+    ]
+  },
+  "ventilation_systems": {
+    "minimum_ventilation": {
+      "purpose": "Provide heat and acceptable air quality, control RH",
+      "when_to_use": "House temperature at or below set-point, or within 2°C above",
+      "operation": "Timer-driven cycle",
+      "inlet_opening": "3-5 cm (1.2-2.0 in)",
+      "air_speed_at_floor": "<0.15 m/s (30 ft/min)",
+      "key_points": [
+        "Not all inlets open at same time - uniformly distribute open inlets",
+        "Monitor air flow and bird behavior",
+        "Heating operates when house temp below set-point even if fans running",
+        "Evaluate by bird comfort, behavior, and air quality within 60 seconds of entering"
+      ]
+    },
+    "transitional_ventilation": {
+      "purpose": "Temperature control when house temp above set-point but not warm enough for tunnel",
+      "when_to_use": "House temperature above required set-point",
+      "operation": "Temperature-driven, sidewall inlets increased",
+      "key_points": [
+        "Tunnel inlets remain closed",
+        "Air directed upward and along ceiling to apex",
+        "If birds sitting/huddling, check pressure and inlet airflow, reduce fans if needed",
+        "Keep in transitional as long as possible before switching to tunnel"
+      ]
+    },
+    "tunnel_ventilation": {
+      "purpose": "Keep birds cool via wind-chill effect",
+      "when_to_use": "When birds need cooling effect beyond transitional",
+      "layout": "Exhaust fans at one end, air inlets at opposite end",
+      "air_deflectors": "First at end of cooling pad, then every 8-9 m (26.2-29.5 ft), minimum 2 m (6.6 ft) above litter",
+      "key_points": [
+        "Switch based on bird behavior, not just temperature",
+        "Younger birds feel greater wind chill",
+        "Monitor bird behavior: sitting/huddling=cold, wings away from body=too warm, >10% panting=too warm",
+        "Measure air speed at 3-4 locations across width, ~30 m from fans"
+      ]
+    }
+  },
+  "evaporative_cooling": {
+    "types": [
+      "Pad cooling",
+      "Fogging/Misting"
+    ],
+    "when_to_use": "When wind-chill alone no longer keeps birds comfortable",
+    "purpose": "Hold house temperature at level where birds were last comfortable with all tunnel fans",
+    "efficiency": "Cooling pads 70-85% efficient",
+    "pad_cooling_management": [
+      "Control amount of water on pads initially to avoid rapid temperature reduction",
+      "Cycle cooling pump on/off for better temperature control",
+      "Turn off when house RH exceeds 70%",
+      "Hard water reduces cool pad operating life"
+    ],
+    "fogging_systems": [
+      {
+        "type": "Low pressure",
+        "pressure_bar": "7-14",
+        "droplet_size_microns": "up to 30",
+        "notes": "Least cooling, greater wet litter risk, not recommended for high RH areas"
+      },
+      {
+        "type": "High pressure",
+        "pressure_bar": "28-41",
+        "droplet_size_microns": "10-15",
+        "notes": "Moderate cooling"
+      },
+      {
+        "type": "Ultra high-pressure (misting)",
+        "pressure_bar": "48-69",
+        "droplet_size_microns": "5",
+        "notes": "Most cooling, lowest litter-wetting risk"
+      }
+    ],
+    "key_principle": "High air speed much more important than evaporative cooling"
+  },
+  "biosecurity_levels": {
+    "conceptual": {
+      "level": "Farm Location",
+      "measures": [
+        "Isolated area, minimum 3.2 km (2 mi) from nearest poultry/livestock",
+        "Away from rivers and ponds to prevent wild bird exposure",
+        "Away from major roadways used for poultry transport",
+        "Fenced perimeter",
+        "Regular water source testing"
+      ]
+    },
+    "structural": {
+      "level": "House Design",
+      "measures": [
+        "Minimize traffic flow",
+        "Facilitate cleaning and disinfection",
+        "Prevent entry by wild birds and rodents",
+        "Concrete floors, washable walls and ceilings",
+        "Accessible ventilation ducts",
+        "No internal pillars or ledges",
+        "East-West orientation to minimize solar heat gain",
+        "15 m (49.2 ft) cleared area around each house"
+      ]
+    },
+    "operational": {
+      "level": "Prevention of Disease Transmission",
+      "measures": [
+        "Lock entry gates, post no trespassing signs",
+        "Shower and complete clothing/footwear change for all entering",
+        "Visitor records with name, company, purpose, previous/next farms",
+        "72 hours downtime after visiting other poultry",
+        "Hand and boot sanitization entering/leaving each house",
+        "Best practice: change boots between houses",
+        "Only necessary cleaned/disinfected tools into house",
+        "Visit youngest flocks first",
+        "Stop all visits if infectious disease suspected"
+      ]
+    }
+  },
+  "animal_disease_prevention": [
+    "All-in/all-out placement cycle",
+    "10-14 days downtime between flocks",
+    "Keep vegetation cut 15 m (49.2 ft) from buildings",
+    "No equipment/building materials left around",
+    "Clean up feed spills immediately",
+    "Ensure feed bins fully closed after deliveries",
+    "Store litter in bags or inside storage building/bin",
+    "Keep wild birds out - seal all holes/gaps",
+    "Anti-rodent barriers (electric fence, metal/concrete fence)",
+    "Continuous rodent baiting program - stations 15-23 m (50-75 ft) apart, max 30 m (100 ft)"
+  ],
+  "vaccination_types": {
+    "live_attenuated": {
+      "description": "Infectious organisms substantially attenuated or modified",
+      "administration": "Drinking water, spray, eye drop, or injection",
+      "examples": [
+        "MD (HVT)",
+        "ND",
+        "IB",
+        "IBD"
+      ],
+      "notes": "Most attenuated form given first, followed by less-attenuated if needed"
+    },
+    "non_attenuated": {
+      "description": "Not attenuated, require more care",
+      "examples": [
+        "Some wild-type coccidiosis vaccines"
+      ],
+      "notes": "Require careful management"
+    },
+    "killed_inactivated": {
+      "description": "Multiple inactivated antigens",
+      "administration": "Injection (subcutaneous)",
+      "notes": "Individual bird administration"
+    },
+    "recombinant": {
+      "description": "Live attenuated virus vector carrying desired vaccine antigens",
+      "examples": [
+        "HVT-IBD",
+        "HVT-ILT",
+        "HVT-IBD-ILT (trivalent)"
+      ],
+      "notes": "Does not carry actual disease virus but produces protective immune response"
+    }
+  },
+  "production_records": {
+    "chick_placement": [
+      "Number of day-old chicks received",
+      "Flock(s) of origin and age",
+      "Date and time of arrival",
+      "Chick quality",
+      "Crop fill",
+      "Chick weight and uniformity",
+      "Dead on arrival"
+    ],
+    "mortality": [
+      "Daily",
+      "Weekly",
+      "Cumulative",
+      "By sex if possible",
+      "Culls and reason",
+      "Post-mortem records",
+      "Coccidial lesion scoring",
+      "7-day mortality particular importance"
+    ],
+    "medication": [
+      "Administration date",
+      "Amount",
+      "Batch number",
+      "Expiration date",
+      "Withdrawal periods"
+    ],
+    "vaccination": [
+      "Date of vaccination",
+      "Disease vaccinated for",
+      "Vaccine type",
+      "Batch number",
+      "Expiration date",
+      "Unexpected vaccine reactions"
+    ],
+    "live_weight": [
+      "Weekly average live weight",
+      "Weekly uniformity (CV%/uniformity%)"
+    ],
+    "feed": [
+      "Date of delivery",
+      "Quantity",
+      "Feed type",
+      "Feed form",
+      "Date of starting feed withdrawal",
+      "Physical feed quality"
+    ],
+    "water": [
+      "Daily consumption",
+      "Water-to-feed ratio",
+      "Water quality",
+      "Level of chlorination"
+    ],
+    "environment": [
+      "Floor temperature",
+      "Litter temperature during brooding",
+      "External temperature (min/max)",
+      "Relative humidity",
+      "Air quality",
+      "Litter quality",
+      "Equipment calibration records"
+    ],
+    "depletion": [
+      "Number of birds removed",
+      "Time and date of removal",
+      "Time of feed withdrawal",
+      "Number of sick/small birds removed"
+    ],
+    "processing_plant_info": [
+      "Dead on arrival (DOA)",
+      "Carcass quality",
+      "Health inspection",
+      "Carcass composition",
+      "Type and percent of condemnations"
+    ],
+    "cleaning_out": [
+      "Total viable counts (TVC)",
+      "Salmonella monitoring if required"
+    ],
+    "house_inspection": [
+      "Times of daily checks",
+      "Bird observations",
+      "Behavior and environmental conditions"
+    ],
+    "lighting_program": [
+      "Dark and light periods",
+      "Time on and time off",
+      "Intermittent or continuous"
+    ],
+    "visitors": [
+      "Name",
+      "Date",
+      "Purpose of visit",
+      "Previous farm visits (place and date)"
+    ]
+  },
+  "nipple_drinker_height": [
+    {
+      "bird_age": "Under 7 days",
+      "back_to_floor_angle": "35-45°",
+      "notes": "Nipples at eye level so chicks can see water droplets"
+    },
+    {
+      "bird_age": "After 7 days",
+      "back_to_floor_angle": "75-85°",
+      "notes": "Neck stretching slightly for water, feet remain on ground"
+    }
+  ],
+  "bell_drinker_guidelines": {
+    "at_placement": "Minimum 6 bell drinkers (40 cm/15.7 in diameter) per 1,000 chicks",
+    "post_brooding": "8 drinkers (40 cm/15.7 in diameter) per 1,000 birds",
+    "water_level_7_10_days": "0.6 cm (0.24 in) below top of drinker",
+    "water_level_after_10_days": "1 cm (0.39 in) in base of drinker",
+    "height_from_day_18": "Base level with top of breast",
+    "notes": "Use ballast to keep level, prevent spillage"
+  },
+  "feeder_height_guidelines": {
+    "correct_height": "Lip of pan level with top of breast",
+    "too_high": "Increased spillage, economic loss, reduced performance, inaccurate FCR estimates",
+    "too_low": "Birds remain close to feeders, reduced uniformity, increased skin scratches",
+    "daily_clearing": "From days 10-12, allow birds to clear feeders once daily, then refill immediately"
+  },
+  "separate_sex_characteristics": {
+    "female": [
+      "Faster growth during brooding",
+      "Average daily gain peaks earlier",
+      "More carcass fat",
+      "Higher eviscerated yield"
+    ],
+    "male": [
+      "Faster growth after brooding",
+      "More feed efficient (lower FCR)",
+      "Less carcass fat",
+      "Average daily gain peaks later"
+    ]
+  },
+  "heat_loss_methods": {
+    "sensible_heat_loss": {
+      "description": "Heat loss from warm body to cooler air",
+      "when_dominant": "When house temperature at or near set-point, air is cool",
+      "indicator": "Birds not panting"
+    },
+    "latent_heat_loss": {
+      "description": "Evaporative cooling through respiratory system (panting)",
+      "when_dominant": "When air temperature high, difference between body and air temperature small",
+      "indicator": "Birds panting",
+      "becomes_dominant_at": "27°C (80.6°F)"
+    }
+  },
+  "house_airtightness_test": {
+    "procedure": "Close all doors and inlets, turn on one 122 cm (48 in)/127 cm (50 in) fan or two 91 cm (36 in) fans",
+    "required_pressure": "Minimum 3.8 mm (0.15 in) water column (37.5 Pa)",
+    "note": "Based on house with ~1,850 m² (19,913 ft²) floor area. Smaller areas should achieve higher pressure; larger areas may be less."
+  }
+}
