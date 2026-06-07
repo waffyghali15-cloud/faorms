@@ -837,21 +837,30 @@ let GHALI_STATE = {
 // ── LOGIN ──
 function doLogin() {
   const name = document.getElementById('login-name').value.trim();
-  if (!name) { document.getElementById('login-err').style.display='block'; return; }
+  if (!name) { 
+    document.getElementById('login-err').style.display='block'; 
+    return; 
+  }
   GHALI_STATE.user = name;
   localStorage.setItem('ghali-user', name);
   GHALI_STATE.apiKey = localStorage.getItem('ghali-api') || '';
   GHALI_STATE.dailyRecords = JSON.parse(localStorage.getItem('ghali-records') || '[]');
   GHALI_STATE.flockStart = localStorage.getItem('ghali-start') || new Date().toISOString().split('T')[0];
-  document.getElementById('login-overlay').classList.add('hidden');
-  document.getElementById('main-app').style.display = '';
+  
+  // Hide login, show app
+  const overlay = document.getElementById('login-overlay');
+  const app = document.getElementById('main-app');
+  overlay.style.display = 'none';
+  app.style.display = 'block';
+  
   if (GHALI_STATE.apiKey) {
-    document.getElementById('api-key-input').value = GHALI_STATE.apiKey;
-    document.getElementById('api-status').textContent = '✅ مفعّل';
-    document.getElementById('api-status').style.color = 'var(--green)';
+    const ki = document.getElementById('api-key-input');
+    const ks = document.getElementById('api-status');
+    if(ki) ki.value = GHALI_STATE.apiKey;
+    if(ks) { ks.textContent = '✅ مفعّل'; ks.style.color = 'var(--green)'; }
   }
   updateRecCount();
-  speak('مرحبا ' + name + '. نظام غالي او إس جاهز. المراقبة جارية.');
+  try { speak('مرحبا ' + name + '. نظام غالي او إس جاهز.'); } catch(e){}
 }
 
 // ── API KEY ──
@@ -1052,7 +1061,17 @@ setInterval(() => {
 // Auto-login if returning user
 window.addEventListener('load', () => {
   const saved = localStorage.getItem('ghali-user');
-  if (saved) document.getElementById('login-name').value = saved;
+  if (saved) {
+    document.getElementById('login-name').value = saved;
+  }
+});
+
+// Allow enter key on name field
+document.addEventListener('DOMContentLoaded', () => {
+  const nameInput = document.getElementById('login-name');
+  if(nameInput) nameInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') doLogin();
+  });
 });
 
 </script>
