@@ -1,0 +1,138 @@
+{
+  "book_metadata": {
+    "title": "Diseases of Poultry",
+    "chapter_number": 1,
+    "chapter_title": "Principles of Disease Prevention, Diagnosis, and Control",
+    "author": "Stephen R. Collett",
+    "source": "Swayne_DoP_13th_Ed_2013",
+    "imported_by": "GhaliOS Knowledge Pipeline",
+    "date_added": "2026-06-07",
+    "historical_editions_registry": [
+      {"edition": "1st", "year": 1943, "pages": 1005, "chapters": 40},
+      {"edition": "2nd", "year": 1948, "pages": 1154, "chapters": 40},
+      {"edition": "3rd", "year": 1952, "pages": 1245, "chapters": 41},
+      {"edition": "4th", "year": 1959, "pages": 1103, "chapters": 41},
+      {"edition": "5th", "year": 1965, "pages": 1382, "chapters": 41},
+      {"edition": "6th", "year": 1972, "pages": 1176, "chapters": 33},
+      {"edition": "7th", "year": 1978, "pages": 949,  "chapters": 33},
+      {"edition": "8th", "year": 1984, "pages": 831,  "chapters": 34},
+      {"edition": "9th", "year": 1991, "pages": 929,  "chapters": 35},
+      {"edition": "10th", "year": 1997, "pages": 1081, "chapters": 37},
+      {"edition": "11th", "year": 2003, "pages": 1231, "chapters": 34},
+      {"edition": "12th", "year": 2008, "pages": 1324, "chapters": 33},
+      {"edition": "13th", "year": 2013, "pages": 1420, "chapters": 72}
+    ]
+  },
+  "epidemiological_core_models": {
+    "infection_risk_formula": {
+      "equation": "Risk = (Challenge Dose * Agent Virulence * Challenge Frequency) / Host Resistance",
+      "parameters": {
+        "challenge_dose": "Total number of viable pathogens entering the host system.",
+        "agent_virulence": "Inherent pathogenicity and qualitative destructive capacity of the organism.",
+        "challenge_frequency": "Rate of exposure events over a defined temporal window.",
+        "host_resistance": "The physiological ability of the flock to withstand infection, heavily influenced by genetic lineage and stress thresholds."
+      }
+    },
+    "statistical_association": {
+      "equation": "Risk Ratio = P(D|E) / P(D|E_bar)",
+      "definitions": {
+        "P(D|E)": "Probability of disease manifestation given direct environmental exposure to the risk factor.",
+        "P(D|E_bar)": "Probability of disease manifestation in the complete absence of the risk factor exposure."
+      }
+    },
+    "pathogen_inactivation_kinetics": {
+      "equation": "Nt = N0 * e^(-k * t)",
+      "parameters": {
+        "N0": "Initial mechanical contamination or microbiological load post-depopulation.",
+        "k": "Pathogen-specific exponential decay constant governed by microclimate variables.",
+        "t": "Duration of downtime or sanitation interval in days."
+      }
+    }
+  },
+  "biosecurity_structural_framework": {
+    "hierarchical_levels": {
+      "conceptual": {
+        "focus": "Geographical isolation and macro-siting decisions.",
+        "metrics": ["Distance from public roads", "Proximity to processing plants", "Density of regional poultry production units"]
+      },
+      "structural": {
+        "focus": "Physical design boundaries and farm infrastructure.",
+        "metrics": ["Perimeter fencing", "Decontamination stations", "Concrete aprons", "All-in/All-out mechanical flow layouts"]
+      },
+      "procedural": {
+        "focus": "Daily execution of operational hygiene routines.",
+        "metrics": ["Shower-in/Shower-out compliance", "Vehicle sanitation logs", "Downtime enforcement between sequential flocks"]
+      }
+    },
+    "biocontainment_zones": {
+      "primary_zone": "The house environment. Complete barrier sealing the live flock.",
+      "secondary_zone": "The farm perimeter. Fenced site boundaries preventing vector crossover.",
+      "tertiary_zone": "The production complex. Integrator network managing logistical boundaries."
+    }
+  },
+  "flock_health_and_telemetry_determinants": {
+    "population_dynamics": {
+      "distribution_type": "Poisson Distribution for clinical sign manifestation.",
+      "uniformity_index": {
+        "critical_threshold": 0.75,
+        "significance": "A drop below 0.75 indicates silent, sub-clinical disease propagation across the population."
+      }
+    },
+    "metabolic_tradeoffs": {
+      "stress_threshold": "The precise metabolic limit where cellular allocation shifts from performance to immune defense.",
+      "immune_activation_costs": "Exaggerated inflammatory responses deplete metabolic pools, driving sharp declines in Feed Conversion Ratio (FCR)."
+    },
+    "silent_gastrointestinal_indicators": {
+      "clinical_blindspots": "Gastrointestinal tract failures lack early overt signs.",
+      "measurable_proxies": [
+        {"metric": "Litter moisture deviation", "critical_limit": "> 35%", "indication": "Intestinal absorptive capacity failure."},
+        {"metric": "Fecal visual inspection", "marker": "Orange mucus shedding", "indication": "Severe desquamation of mucosal enterocytes."}
+      ]
+    }
+  },
+  "diagnostics_and_surveillance_protocols": {
+    "specimen_management": {
+      "sampling_types": ["Tracheal Swab", "Cloacal Swab", "Tissue Organ Pools", "Serum Fractions"],
+      "critical_requirement": "Strict validation of the cold chain matrix during field-to-lab courier transport."
+    },
+    "testing_modalities": {
+      "molecular": "Real-Time Polymerase Chain Reaction (qPCR) for rapid genetic detection.",
+      "serological": "Enzyme-Linked Immunosorbent Assay (ELISA) for longitudinal monitoring of herd immunity curves.",
+      "virological": "In vivo virus isolation utilizing embryonated egg inoculation protocols."
+    },
+    "surveillance_types": {
+      "passive": "Triggered ad-hoc by sudden mortality spikes or severe clinical escalations.",
+      "active": "Structured, periodic testing routines designed to capture pathogen presence before clinical onset."
+    },
+    "statistical_sampling": {
+      "sample_size_determination": "Based on Cannon & Roe equations to guarantee 95% confidence against 5% design prevalence."
+    }
+  },
+  "outbreak_containment_and_regulatory_actions": {
+    "differential_diagnosis_matrix": [
+      {
+        "gross_lesions": ["Tracheal hemorrhage", "Proventricular gland hemorrhage"],
+        "suspected_pathogens": ["Highly Pathogenic Avian Influenza (HPAI)", "Velogenic Newcastle Disease (vNDV)"],
+        "action_protocol": "Immediate statutory government notification and complete freeze on site logistics."
+      },
+      {
+        "gross_lesions": ["Bursal enlargement", "Bursal edema", "Bursal hemorrhage"],
+        "suspected_pathogens": ["Infectious Bursal Disease (IBD / Gumboro)"],
+        "action_protocol": "Immediate overhaul of maternal antibody windows and review of vaccination delivery consistency."
+      }
+    ],
+    "geofencing_containment": {
+      "infected_zone_radius_km": 3.0,
+      "buffer_zone_radius_km": 10.0,
+      "quarantine_mandates": [
+        "Stamping-out policies inside ground zero.",
+        "Enhanced biosurveillance inside the 3km infected zone.",
+        "Active monitoring inside the 10km buffer ring."
+      ]
+    },
+    "transmission_vectors": {
+      "fomites": ["Egg flats", "Coops", "Personnel footwear", "Feed delivery vehicles"],
+      "biological_vectors": ["Rodents (Rats/Mice)", "Alphitobius diaperinus (Lesser Mealworm)", "Wild migratory waterfowl"]
+    }
+  }
+}

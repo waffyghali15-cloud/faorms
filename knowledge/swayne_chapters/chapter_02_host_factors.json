@@ -1,0 +1,155 @@
+{
+  "chapter_metadata": {
+    "chapter_number": 2,
+    "chapter_title": "Host Factors for Disease Resistance",
+    "authors": ["H. Juul-Madsen", "R. B. Dalgaard", "G. Su"],
+    "source": "Swayne_DoP_13th_Ed_2013",
+    "imported_by": "GhaliOS Knowledge Pipeline",
+    "date_added": "2026-06-07"
+  },
+  "major_histocompatibility_complex_mhc": {
+    "genomic_properties": {
+      "naming_convention": "B-complex (Avian Major Histocompatibility Complex).",
+      "size_and_density": "Minimal Essential MHC. Extremely compact genomic structure compared to mammals.",
+      "evolutionary_tradeoff": "High co-regulation efficiency leads to rapid antigen presentation, but tight linkage increases population vulnerability."
+    },
+    "locus_and_region_mappings": [
+      {
+        "region_name": "BF Region",
+        "mhc_class": "Class I",
+        "molecular_structure": "Encodes polymorphic alpha-chains non-covalently linked to beta-2 microglobulin.",
+        "functional_pathway": "Presents endogenous viral peptide fragments directly to CD8+ cytotoxic T lymphocytes (CTLs)."
+      },
+      {
+        "region_name": "BL Region",
+        "mhc_class": "Class II",
+        "molecular_structure": "Encodes highly polymorphic alpha and beta chain heterodimers.",
+        "functional_pathway": "Expressed on professional antigen-presenting cells; presents exogenous antigens to CD4+ T-helper cells."
+      },
+      {
+        "region_name": "BG Region",
+        "mhc_class": "Class IV",
+        "molecular_structure": "Avian-specific highly polymorphic multigene family.",
+        "functional_pathway": "Expressed on erythrocytes, intestinal epithelial boundaries, and immune stromal matrices."
+      }
+    ],
+    "haplotype_epidemiological_associations": {
+      "B21_haplotype": {
+        "phenotypic_expression": "Maximum genetic resistance to Marek's Disease Virus (MDV).",
+        "cellular_mechanism": "Triggers highly efficient surface presentation of viral antigens during early lytic phase."
+      },
+      "B19_haplotype": {
+        "phenotypic_expression": "Extreme clinical susceptibility to Marek's Disease Virus (MDV).",
+        "cellular_mechanism": "Displays defective binding kinetics for MDV peptide fragments, allowing unrestricted viral replication."
+      },
+      "B2_B15_haplotypes": {
+        "phenotypic_expression": "Intermediate/Variable reference baselines.",
+        "cellular_mechanism": "Standard commercial production control lineages."
+      }
+    }
+  },
+  "innate_immune_architecture": {
+    "cellular_defenses": {
+      "heterophils": {
+        "functional_definition": "Primary avian polymorphonuclear (PMN) granulocyte, acting as immediate cellular responder.",
+        "enzymatic_blindspot": "Completely devoid of myeloperoxidase (MPO); unable to generate respiratory bursts.",
+        "destruction_mechanism": "Relies on oxygen-independent phagocytosis using avian beta-defensins (AvBDs), lysozymes, and cationic bactericidal proteins."
+      },
+      "macrophages": {
+        "functional_role": "Phagocytosis, antigen processing, and synthesis of reactive oxygen species (ROS).",
+        "activation_marker": "Heavy production of Nitric Oxide (NO) induced by Interferon-gamma (IFN-γ)."
+      }
+    },
+    "toll_like_receptors_tlr_matrix": [
+      {
+        "receptor": "TLR3",
+        "ligand_target": "Double-stranded RNA (dsRNA) from active viral replication.",
+        "downstream_cascade": "Triggers TRIF signaling, forcing secretion of Type I Interferons (IFN-α/β)."
+      },
+      {
+        "receptor": "TLR4",
+        "ligand_target": "Lipopolysaccharide (LPS) from Gram-negative bacterial membranes.",
+        "downstream_cascade": "Activates MyD88-dependent pathways, releasing pro-inflammatory cytokines."
+      },
+      {
+        "receptor": "TLR21",
+        "ligand_target": "Unmethylated CpG DNA bacterial motifs.",
+        "downstream_cascade": "Avian homolog to mammalian TLR9; optimizes detection of bacterial chromosomal structures."
+      }
+    ]
+  },
+  "adaptive_immunity_and_lymphoid_differentiation": {
+    "bursa_of_fabricius": {
+      "organ_type": "Primary lymphoid organ for B-cell maturation.",
+      "diversification_mechanism": "Gene Conversion. Chickens possess only a single functional V and J gene locus. Diversification occurs by copy-pasting nucleotide segments from upstream pseudo-genes."
+    },
+    "thymus": {
+      "organ_type": "Primary lymphoid organ for T-cell maturation.",
+      "selection_mechanisms": [
+        {"phase": "Positive Selection", "site": "Thymic Cortex", "outcome": "Validation of TCR affinity for self-MHC complexes."},
+        {"phase": "Negative Selection", "site": "Thymic Medulla", "outcome": "Clonal deletion of autoreactive T-cell clones."}
+      ],
+      "metabolic_cost": "Over 95% attrition rate during standard selection cycles."
+    },
+    "t_cell_receptor_lineages": [
+      {
+        "subtype": "TCR1",
+        "chain_composition": "Gamma-Delta (γδ) heterodimers.",
+        "population_dynamics": "Abundant in young chicks (20-50% of circulating pool); no MHC presentation required.",
+        "tissue_homing": "Mucosal intraepithelial linings, splenic red pulp, intestinal lamina propria."
+      },
+      {
+        "subtype": "TCR2",
+        "chain_composition": "Alpha-Beta-1 (αβ1) heterodimers.",
+        "population_dynamics": "Predominant T-lymphocyte in mature peripheral lymphoid organs.",
+        "tissue_homing": "Systemic circulation, MHC-restricted immune monitoring."
+      },
+      {
+        "subtype": "TCR3",
+        "chain_composition": "Alpha-Beta-2 (αβ2) heterodimers.",
+        "population_dynamics": "Minor specialized subset unique to avian families.",
+        "tissue_homing": "Mucosal and secondary lymphatic organs."
+      }
+    ]
+  },
+  "cytokine_signaling": {
+    "interferons": {
+      "type_i": {
+        "variants": ["IFN-α", "IFN-β"],
+        "secreted_by": "Macrophages, heterophils, virus-infected fibroblasts.",
+        "action": "Upregulates Mx genes and PKR pathways, locking neighboring cells in antiviral state."
+      },
+      "type_ii": {
+        "variants": ["IFN-γ"],
+        "secreted_by": "NK cells, Th1 CD4+ cells, activated CD8+ CTLs.",
+        "action": "Upregulates MHC Class I and II expression; absolute activator for macrophage phagocytic kinetics."
+      }
+    },
+    "interleukins": [
+      {"cytokine": "IL-1β and IL-6", "classification": "Pro-inflammatory pyrogens", "impact": "Induces acute-phase protein pathways and systemic metabolic shifts."},
+      {"cytokine": "IL-2", "classification": "T-cell growth factor", "impact": "Drives clonal expansion of antigen-primed T-lymphocytes."},
+      {"cytokine": "IL-10", "classification": "Anti-inflammatory regulator", "impact": "Downregulates active inflammatory cascades, protecting mucosal tissues."}
+    ],
+    "chemokines": {
+      "cxcl8_avian_analog": "IL-8 (K60)",
+      "function": "Orchestrates accelerated chemotaxis of heterophils to focal points of infection."
+    }
+  },
+  "lymphoid_organs": {
+    "harderian_gland": {
+      "location": "Retrobulbar space of the orbital cavity.",
+      "function": "Dominant effector site for ocular and upper respiratory mucosal protection. Dense plasma cells secreting sIgA."
+    },
+    "cecal_tonsils": {
+      "location": "Junction of the ceca and ileum.",
+      "function": "Largest organized gut-associated lymphoid tissue (GALT) hub in birds."
+    },
+    "splenic_white_pulp": {
+      "zones": [
+        {"zone": "PALS", "cell_type": "T-lymphocytes"},
+        {"zone": "PELF", "cell_type": "B-cells and dendritic structures"}
+      ],
+      "function": "Systemic blood filter for intravascular bacterial and viral clearance."
+    }
+  }
+}
