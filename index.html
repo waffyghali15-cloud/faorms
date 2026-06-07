@@ -812,13 +812,7 @@ function updateClock() {
 // ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
-renderChecklist();
-renderRossTable();
-updateAll();
-loadWeather();
-updateClock();
-setInterval(simulate, 5000);
-setInterval(updateClock, 1000);
+// Calls moved to doLogin()
 
 // ═══════════════════════════════════════════════
 // GHALIOS — LOGIN + CAMERA + VOICE + RECORDS
@@ -860,6 +854,14 @@ function doLogin() {
     if(ks) { ks.textContent = '✅ مفعّل'; ks.style.color = 'var(--green)'; }
   }
   updateRecCount();
+  // Initialize original functions
+  try { renderChecklist(); } catch(e){}
+  try { renderRossTable(); } catch(e){}
+  try { updateAll(); } catch(e){}
+  try { loadWeather(); } catch(e){}
+  try { updateClock(); } catch(e){}
+  setInterval(simulate, 5000);
+  setInterval(updateClock, 1000);
   try { speak('مرحبا ' + name + '. نظام غالي او إس جاهز.'); } catch(e){}
 }
 
