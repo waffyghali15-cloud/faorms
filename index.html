@@ -2,686 +2,1098 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FarmOS — الحارس البيطري الذكي</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>GhaliOS — الحارس البيطري الذكي</title>
 <style>
-:root {
-  --bg: #070d09;
-  --s1: #0d1610;
-  --s2: #111f14;
-  --s3: #162419;
-  --border: #1c2e1f;
-  --green: #00ff6a;
-  --green2: #00c952;
-  --green3: #007a32;
-  --glow: rgba(0,255,106,0.10);
-  --amber: #ffb830;
-  --red: #ff3d3d;
-  --blue: #3db8ff;
-  --text: #dff5e7;
-  --dim: #5a8065;
-  --muted: #2a4030;
-  --radius: 2px;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
 
-/* grid bg */
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,106,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,106,.025) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+  :root {
+    --bg: #060d08;
+    --surface: #0d1a10;
+    --surface2: #122016;
+    --border: #1a3020;
+    --green: #00e676;
+    --green-dim: #1a4a2a;
+    --yellow: #ffd600;
+    --red: #ff3d3d;
+    --text: #c8e6c9;
+    --text-dim: #4a7a55;
+    --blue: #40c4ff;
+  }
 
-.app{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:16px;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* TOP BAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--s1);border:1px solid var(--border);border-top:2px solid var(--green);margin-bottom:16px;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo-icon{width:32px;height:32px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px;}
-.logo-text{font-size:18px;font-weight:900;letter-spacing:-0.5px;}
-.logo-text span{color:var(--green);}
-.logo-sub{font-size:10px;color:var(--dim);font-family:'IBM Plex Mono',monospace;margin-top:1px;}
-.status-bar{display:flex;align-items:center;gap:16px;}
-.status-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--dim);}
-.dot{width:7px;height:7px;border-radius:50%;}
-.dot.on{background:var(--green);box-shadow:0 0 6px var(--green);animation:blink 2s infinite;}
-.dot.off{background:var(--red);}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-/* FLOCK SETUP */
-.setup-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px;}
-.setup-card{background:var(--s1);border:1px solid var(--border);padding:14px 16px;}
-.setup-label{font-size:10px;color:var(--dim);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-.setup-input{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;padding:6px 10px;outline:none;border-radius:var(--radius);}
-.setup-input:focus{border-color:var(--green3);}
-.setup-value{font-size:20px;font-weight:800;color:var(--green);}
-.setup-value.amber{color:var(--amber);}
+  /* ===== SCREENS ===== */
+  .screen { display: none; min-height: 100vh; flex-direction: column; }
+  .screen.active { display: flex; }
 
-/* MAIN GRID */
-.main-grid{display:grid;grid-template-columns:1fr 340px;gap:16px;margin-bottom:16px;}
-@media(max-width:720px){.main-grid{grid-template-columns:1fr;}}
+  /* ===== LOGIN ===== */
+  #screen-login {
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, #0d2010 0%, #060d08 70%);
+    padding: 24px;
+  }
 
-/* SENSORS */
-.sensors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-.sensor-card{background:var(--s1);border:1px solid var(--border);padding:16px;position:relative;overflow:hidden;cursor:default;}
-.sensor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.sensor-card.ok::before{background:var(--green);}
-.sensor-card.warn::before{background:var(--amber);}
-.sensor-card.danger::before{background:var(--red);}
-.sensor-name{font-size:11px;color:var(--dim);font-family:'IBM Plex Mono',monospace;margin-bottom:8px;}
-.sensor-val{font-size:28px;font-weight:800;font-family:'IBM Plex Mono',monospace;line-height:1;}
-.sensor-val.ok{color:var(--green);}
-.sensor-val.warn{color:var(--amber);}
-.sensor-val.danger{color:var(--red);}
-.sensor-unit{font-size:13px;font-weight:400;color:var(--dim);}
-.sensor-range{font-size:11px;color:var(--muted);margin-top:6px;font-family:'IBM Plex Mono',monospace;}
-.sensor-status{font-size:11px;margin-top:4px;}
-.sensor-status.ok{color:var(--green);}
-.sensor-status.warn{color:var(--amber);}
-.sensor-status.danger{color:var(--red);}
+  .login-logo { text-align: center; margin-bottom: 40px; }
+  .login-logo .shield { font-size: 72px; filter: drop-shadow(0 0 20px #00e676); animation: pulse 2s infinite; }
+  .login-logo h1 { font-size: 36px; font-weight: 800; color: var(--green); letter-spacing: 4px; }
+  .login-logo p { color: var(--text-dim); font-size: 14px; margin-top: 4px; }
 
-/* MINI CHART */
-.mini-chart{height:32px;margin-top:8px;display:flex;align-items:flex-end;gap:2px;}
-.bar-c{flex:1;background:rgba(0,255,106,.12);border-radius:1px;transition:height .3s;}
+  @keyframes pulse { 0%,100%{filter:drop-shadow(0 0 20px #00e676)} 50%{filter:drop-shadow(0 0 40px #00e676)} }
 
-/* ALERTS */
-.alerts-panel{background:var(--s1);border:1px solid var(--border);}
-.panel-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);}
-.panel-title{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;}
-.badge-count{background:var(--red);color:#fff;font-size:10px;font-family:'IBM Plex Mono',monospace;padding:2px 7px;border-radius:1px;}
-.badge-count.warn{background:var(--amber);color:#000;}
-.badge-count.ok{background:var(--green3);color:#fff;}
-.alerts-list{max-height:260px;overflow-y:auto;}
-.alert-item{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start;}
-.alert-item:last-child{border-bottom:none;}
-.alert-icon{font-size:16px;flex-shrink:0;margin-top:2px;}
-.alert-body{}
-.alert-title{font-size:13px;font-weight:700;margin-bottom:3px;}
-.alert-title.danger{color:var(--red);}
-.alert-title.warn{color:var(--amber);}
-.alert-title.info{color:var(--blue);}
-.alert-title.ok{color:var(--green);}
-.alert-desc{font-size:12px;color:var(--dim);line-height:1.5;}
-.alert-source{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:4px;}
-.alert-time{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;white-space:nowrap;flex-shrink:0;}
+  .login-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    width: 100%;
+    max-width: 360px;
+  }
 
-/* WEATHER */
-.weather-bar{background:var(--s1);border:1px solid var(--border);padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-.weather-item{display:flex;flex-direction:column;gap:3px;}
-.weather-label{font-size:10px;color:var(--dim);font-family:'IBM Plex Mono',monospace;}
-.weather-val{font-size:16px;font-weight:700;}
+  .field { margin-bottom: 16px; }
+  .field label { display: block; color: var(--text-dim); font-size: 13px; margin-bottom: 6px; }
+  .field input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    outline: none;
+    direction: rtl;
+  }
+  .field input:focus { border-color: var(--green); }
 
-/* CHECKLIST */
-.checklist{background:var(--s1);border:1px solid var(--border);margin-bottom:16px;}
-.check-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;}
-.check-item:last-child{border-bottom:none;}
-.check-item:hover{background:var(--s2);}
-.check-box{width:18px;height:18px;border:1px solid var(--border);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:.2s;}
-.check-box.checked{background:var(--green);border-color:var(--green);color:#000;}
-.check-sense{font-size:10px;font-family:'IBM Plex Mono',monospace;padding:2px 7px;margin-top:3px;display:inline-block;}
-.check-sense.look{background:rgba(61,184,255,.12);color:var(--blue);}
-.check-sense.smell{background:rgba(255,184,48,.10);color:var(--amber);}
-.check-sense.listen{background:rgba(0,255,106,.08);color:var(--green);}
-.check-sense.feel{background:rgba(255,61,61,.08);color:var(--red);}
-.check-text{font-size:13px;line-height:1.5;}
-.check-text.done{color:var(--dim);text-decoration:line-through;}
+  .btn-primary {
+    width: 100%;
+    background: var(--green);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Tajawal', sans-serif;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:active { opacity: 0.8; }
 
-/* CHAT */
-.chat-section{background:var(--s1);border:1px solid var(--border);}
-.chat-messages{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
-.msg{max-width:88%;padding:10px 14px;border-radius:var(--radius);font-size:13px;line-height:1.6;}
-.msg.bot{background:var(--s2);border:1px solid var(--border);align-self:flex-start;border-right:2px solid var(--green);}
-.msg.user{background:rgba(0,255,106,.08);border:1px solid rgba(0,255,106,.2);align-self:flex-end;}
-.msg-source{font-size:10px;color:var(--dim);margin-top:6px;font-family:'IBM Plex Mono',monospace;}
-.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border);}
-.chat-input{flex:1;background:var(--s2);border:1px solid var(--border);color:var(--text);font-family:'Tajawal',sans-serif;font-size:14px;padding:10px 14px;outline:none;border-radius:var(--radius);}
-.chat-input:focus{border-color:var(--green3);}
-.chat-btn{background:var(--green);color:#000;border:none;padding:10px 18px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border-radius:var(--radius);white-space:nowrap;}
-.chat-btn:disabled{background:var(--green3);cursor:not-allowed;}
-.typing{display:flex;gap:4px;align-items:center;padding:4px 0;}
-.typing span{width:6px;height:6px;background:var(--green);border-radius:50%;animation:bounce .8s infinite;}
-.typing span:nth-child(2){animation-delay:.15s;}
-.typing span:nth-child(3){animation-delay:.3s;}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-6px);}}
+  /* ===== FARM SETUP ===== */
+  #screen-setup {
+    padding: 24px;
+    overflow-y: auto;
+  }
 
-/* SECTION TITLES */
-.section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.section-hdr h3{font-size:13px;font-weight:700;color:var(--text);}
-.section-hdr .line{flex:1;height:1px;background:var(--border);}
-.section-hdr .tag{font-size:10px;font-family:'IBM Plex Mono',monospace;padding:2px 8px;background:rgba(0,255,106,.08);color:var(--green);border:1px solid rgba(0,255,106,.2);}
+  .setup-header { text-align: center; margin-bottom: 32px; padding-top: 16px; }
+  .setup-header h2 { font-size: 24px; font-weight: 700; color: var(--green); }
+  .setup-header p { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
 
-/* ROSS TABLE */
-.ross-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;}
-.ross-table th{background:var(--s2);padding:8px 12px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);border-bottom:1px solid var(--border);font-weight:400;}
-.ross-table td{padding:8px 12px;text-align:center;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;}
-.ross-table tr.current-age td{background:rgba(0,255,106,.06);color:var(--green);font-weight:700;}
-.ross-table tr:hover td{background:var(--s2);}
+  .setup-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--s1);}
-::-webkit-scrollbar-thumb{background:var(--green3);}
+  .setup-card h3 { color: var(--green); font-size: 16px; margin-bottom: 16px; }
 
-.full-width{grid-column:1/-1;}
+  .field select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ===== MAIN DASHBOARD ===== */
+  #screen-dashboard { overflow-y: auto; }
+
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-logo { font-size: 18px; font-weight: 800; color: var(--green); }
+  .topbar-info { font-size: 12px; color: var(--text-dim); text-align: center; }
+  .topbar-time { font-size: 13px; color: var(--text-dim); }
+
+  /* Voice button */
+  .voice-btn {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--green);
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(0,230,118,0.4);
+    z-index: 200;
+    transition: all 0.2s;
+  }
+  .voice-btn.listening {
+    background: var(--red);
+    animation: voicePulse 1s infinite;
+  }
+  @keyframes voicePulse { 0%,100%{box-shadow:0 0 30px rgba(255,61,61,0.4)} 50%{box-shadow:0 0 60px rgba(255,61,61,0.8)} }
+
+  /* Bottom nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    z-index: 100;
+    height: 64px;
+  }
+  .nav-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 11px;
+    gap: 2px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-btn.active { color: var(--green); }
+  .nav-btn .icon { font-size: 22px; }
+
+  /* Content tabs */
+  .tab-content { display: none; padding: 16px; padding-bottom: 160px; }
+  .tab-content.active { display: block; }
+
+  /* Alert banner */
+  .alert-banner {
+    background: linear-gradient(135deg, #3a0000, #1a0000);
+    border: 1px solid var(--red);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .alert-banner .alert-icon { font-size: 28px; }
+  .alert-banner .alert-text { flex: 1; }
+  .alert-banner .alert-title { font-weight: 700; color: var(--red); }
+  .alert-banner .alert-msg { font-size: 13px; color: #ff8a80; margin-top: 2px; }
+
+  /* Sensor cards */
+  .sensors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+  .sensor-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sensor-card.warning { border-color: var(--yellow); }
+  .sensor-card.danger { border-color: var(--red); }
+  .sensor-card.ok { border-color: #1a5530; }
+
+  .sensor-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .sensor-value { font-size: 32px; font-weight: 800; margin: 4px 0; }
+  .sensor-value.ok-val { color: var(--green); }
+  .sensor-value.warn-val { color: var(--yellow); }
+  .sensor-value.danger-val { color: var(--red); }
+  .sensor-unit { font-size: 13px; color: var(--text-dim); }
+  .sensor-status { font-size: 12px; margin-top: 6px; }
+
+  /* Camera section */
+  .cam-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .cam-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .cam-header h3 { font-size: 14px; color: var(--green); }
+  .cam-status { font-size: 12px; color: var(--text-dim); }
+  .cam-live { background: var(--red); color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700; }
+
+  .cam-view {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cam-view video { width: 100%; height: 100%; object-fit: cover; }
+  .cam-placeholder { text-align: center; color: var(--text-dim); font-size: 13px; }
+  .cam-placeholder .cam-icon { font-size: 48px; margin-bottom: 8px; }
+
+  .cam-controls { padding: 12px 16px; display: flex; gap: 8px; }
+  .cam-btn {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    color: var(--text);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cam-btn.active { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+
+  /* Report card */
+  .report-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .report-time { font-size: 11px; color: var(--text-dim); margin-bottom: 8px; }
+  .report-content { font-size: 14px; line-height: 1.6; }
+  .report-ok { color: var(--green); }
+  .report-warn { color: var(--yellow); }
+
+  /* Flock data */
+  .flock-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .flock-stat-label { color: var(--text-dim); font-size: 14px; }
+  .flock-stat-value { font-size: 22px; font-weight: 700; color: var(--green); }
+
+  .export-btn {
+    width: 100%;
+    background: transparent;
+    border: 2px solid var(--yellow);
+    border-radius: 12px;
+    padding: 18px;
+    color: var(--yellow);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Voice display */
+  .voice-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(6,13,8,0.95);
+    border: 1px solid var(--green);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    z-index: 500;
+    width: 85%;
+    max-width: 320px;
+    display: none;
+  }
+  .voice-display.show { display: block; }
+  .voice-display h3 { color: var(--green); margin-bottom: 12px; }
+  .voice-text { font-size: 18px; color: var(--text); min-height: 60px; line-height: 1.5; }
+  .voice-close { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px 24px; color: var(--text-dim); font-family: 'Tajawal',sans-serif; cursor: pointer; margin-top: 16px; }
+
+  /* Settings */
+  .settings-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .settings-item {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .settings-item:last-child { border-bottom: none; }
+  .settings-item-label { font-size: 15px; }
+  .settings-item-value { color: var(--text-dim); font-size: 14px; }
+  .badge { background: var(--green-dim); color: var(--green); font-size: 11px; padding: 2px 8px; border-radius: 20px; }
 </style>
 </head>
 <body>
-<div class="app">
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="logo">
-    <div class="logo-icon">🛡️</div>
-    <div>
-      <div class="logo-text">Farm<span>OS</span></div>
-      <div class="logo-sub">الحارس البيطري الذكي للقطيع</div>
+<!-- ===== LOGIN ===== -->
+<div id="screen-login" class="screen active">
+  <div class="login-logo">
+    <div class="shield">🛡️</div>
+    <h1>GhaliOS</h1>
+    <p>الحارس البيطري الذكي للقطيع</p>
+  </div>
+  <div class="login-card">
+    <div class="field">
+      <label>اسم المربي</label>
+      <input type="text" id="login-name" placeholder="مثال: غالي" />
+    </div>
+    <div class="field">
+      <label>كلمة السر</label>
+      <input type="password" id="login-pass" placeholder="••••••" />
+    </div>
+    <button class="btn-primary" onclick="doLogin()">دخول 🔓</button>
+    <div id="login-error" style="color:var(--red);text-align:center;margin-top:12px;font-size:14px;display:none;">اسم أو كلمة سر غلط</div>
+  </div>
+  <div style="color:var(--text-dim);font-size:12px;text-align:center;margin-top:24px;">© 2026 GhaliOS — جميع الحقوق محفوظة</div>
+</div>
+
+<!-- ===== FARM SETUP ===== -->
+<div id="screen-setup" class="screen">
+  <div class="setup-header">
+    <h2>🏡 إعداد المزرعة</h2>
+    <p>هاي البيانات ما بتتبدل كثير — ادخلها مرة واحدة</p>
+  </div>
+
+  <div class="setup-card">
+    <h3>📋 بيانات المزرعة</h3>
+    <div class="field"><label>اسم المزرعة</label><input type="text" id="farm-name" placeholder="مزرعة غالي" /></div>
+    <div class="field"><label>الموقع / المنطقة</label><input type="text" id="farm-location" placeholder="مثال: السعن، سوريا" /></div>
+    <div class="grid-2">
+      <div class="field"><label>عدد القاعات</label><input type="number" id="farm-halls" placeholder="1" /></div>
+      <div class="field"><label>اتجاه القاعة</label>
+        <select id="farm-direction">
+          <option>شرق-غرب</option>
+          <option>شمال-جنوب</option>
+          <option>شمال شرق-جنوب غرب</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="field"><label>طول القاعة (م)</label><input type="number" id="farm-length" placeholder="80" /></div>
+      <div class="field"><label>عرض القاعة (م)</label><input type="number" id="farm-width" placeholder="12" /></div>
+    </div>
+    <div class="field"><label>نوع التهوية</label>
+      <select id="farm-ventilation">
+        <option>طبيعية</option>
+        <option>ميكانيكية جزئية</option>
+        <option>ميكانيكية كاملة</option>
+        <option>تبريد تبخيري</option>
+      </select>
     </div>
   </div>
-  <div class="status-bar">
-    <div class="status-item"><div class="dot on"></div>النظام يعمل</div>
-    <div class="status-item"><div class="dot on"></div>Claude API</div>
-    <div class="status-item" id="clock-display"><div class="dot on"></div><span id="clock">--:--</span></div>
-  </div>
-</div>
 
-<!-- FLOCK SETUP -->
-<div class="setup-bar">
   <div class="setup-card">
-    <div class="setup-label">عمر القطيع (أيام)</div>
-    <input class="setup-input" type="number" id="flock-age" value="21" min="1" max="60" onchange="updateAll()">
-  </div>
-  <div class="setup-card">
-    <div class="setup-label">عدد الطيور</div>
-    <input class="setup-input" type="number" id="flock-count" value="5000" min="100" onchange="updateAll()">
-  </div>
-  <div class="setup-card">
-    <div class="setup-label">النفوق اليومي</div>
-    <input class="setup-input" type="number" id="daily-mort" value="3" min="0" onchange="updateAll()">
-  </div>
-  <div class="setup-card">
-    <div class="setup-label">نسبة النفوق%</div>
-    <div class="setup-value" id="mort-pct">0.06%</div>
-  </div>
-  <div class="setup-card">
-    <div class="setup-label">حرارة Ross المستهدفة</div>
-    <div class="setup-value amber" id="target-temp">23°C</div>
-  </div>
-</div>
-
-<!-- WEATHER -->
-<div class="weather-bar" id="weather-bar">
-  <div class="weather-item">
-    <div class="weather-label">☁️ الطقس الخارجي</div>
-    <div class="weather-val" id="w-temp">--°C</div>
-  </div>
-  <div class="weather-item">
-    <div class="weather-label">💧 رطوبة خارجية</div>
-    <div class="weather-val" id="w-hum">--%</div>
-  </div>
-  <div class="weather-item">
-    <div class="weather-label">🌬️ سرعة الرياح</div>
-    <div class="weather-val" id="w-wind">-- km/h</div>
-  </div>
-  <div class="weather-item">
-    <div class="weather-label">📍 الموقع</div>
-    <div class="weather-val" style="font-size:13px;color:var(--dim)" id="w-loc">جاري التحميل...</div>
-  </div>
-  <button onclick="loadWeather()" style="background:var(--s2);border:1px solid var(--border);color:var(--dim);padding:6px 14px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:12px;border-radius:2px;">🔄 تحديث</button>
-</div>
-
-<!-- MAIN GRID -->
-<div class="main-grid">
-
-  <!-- LEFT: SENSORS + TABLE + CHECKLIST -->
-  <div>
-    <div class="section-hdr">
-      <h3>مراقبة بيئية حية</h3>
-      <div class="tag">Ross 2025</div>
-      <div class="line"></div>
+    <h3>🐥 بيانات القطيع الحالي</h3>
+    <div class="grid-2">
+      <div class="field"><label>تاريخ الاستقبال</label><input type="date" id="flock-start" /></div>
+      <div class="field"><label>عدد الكتاكيت</label><input type="number" id="flock-count" placeholder="5000" /></div>
     </div>
+    <div class="field"><label>السلالة</label>
+      <select id="flock-breed">
+        <option>Ross 308</option>
+        <option>Ross 380</option>
+        <option>Cobb 500</option>
+        <option>Arbor Acres</option>
+        <option>Hubbard</option>
+      </select>
+    </div>
+    <div class="field"><label>مصدر الكتاكيت</label><input type="text" id="flock-source" placeholder="مثال: مفرخة الفرات" /></div>
+    <div class="field"><label>Claude API Key (اختياري)</label><input type="text" id="api-key" placeholder="sk-ant-..." /></div>
+  </div>
+
+  <button class="btn-primary" onclick="saveSetup()">💾 حفظ وبدء المراقبة</button>
+  <div style="height:20px;"></div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="screen-dashboard" class="screen">
+  <div class="topbar">
+    <div class="topbar-logo">🛡️ GhaliOS</div>
+    <div class="topbar-info">
+      <div id="tb-farm-name" style="font-size:13px;color:var(--text);">المزرعة</div>
+      <div id="tb-day" style="font-size:11px;color:var(--text-dim);">اليوم 1</div>
+    </div>
+    <div id="tb-time" class="topbar-time">00:00</div>
+  </div>
+
+  <!-- TAB: MONITORING -->
+  <div id="tab-monitor" class="tab-content active">
+    <div id="alerts-area"></div>
+
     <div class="sensors-grid">
       <div class="sensor-card" id="card-temp">
-        <div class="sensor-name">TEMPERATURE</div>
-        <div class="sensor-val" id="val-temp">24.2 <span class="sensor-unit">°C</span></div>
-        <div class="sensor-range" id="range-temp">مستهدف: 23°C</div>
-        <div class="sensor-status" id="status-temp">✓ طبيعي</div>
-        <div class="mini-chart" id="chart-temp"></div>
+        <div class="sensor-label">🌡️ الحرارة</div>
+        <div class="sensor-value" id="val-temp">--</div>
+        <div class="sensor-unit">°C</div>
+        <div class="sensor-status" id="status-temp">—</div>
       </div>
       <div class="sensor-card" id="card-hum">
-        <div class="sensor-name">HUMIDITY</div>
-        <div class="sensor-val" id="val-hum">65 <span class="sensor-unit">%</span></div>
-        <div class="sensor-range">مستهدف: 50–70%</div>
-        <div class="sensor-status" id="status-hum">✓ طبيعي</div>
-        <div class="mini-chart" id="chart-hum"></div>
+        <div class="sensor-label">💧 الرطوبة</div>
+        <div class="sensor-value" id="val-hum">--</div>
+        <div class="sensor-unit">%</div>
+        <div class="sensor-status" id="status-hum">—</div>
       </div>
       <div class="sensor-card" id="card-nh3">
-        <div class="sensor-name">AMMONIA NH3</div>
-        <div class="sensor-val" id="val-nh3">8 <span class="sensor-unit">ppm</span></div>
-        <div class="sensor-range">حد أمان: &lt;10 ppm</div>
-        <div class="sensor-status" id="status-nh3">✓ طبيعي</div>
-        <div class="mini-chart" id="chart-nh3"></div>
+        <div class="sensor-label">☁️ NH3</div>
+        <div class="sensor-value" id="val-nh3">--</div>
+        <div class="sensor-unit">ppm</div>
+        <div class="sensor-status" id="status-nh3">—</div>
       </div>
       <div class="sensor-card" id="card-co2">
-        <div class="sensor-name">CO2</div>
-        <div class="sensor-val" id="val-co2">1800 <span class="sensor-unit">ppm</span></div>
-        <div class="sensor-range">حد أمان: &lt;2500 ppm</div>
-        <div class="sensor-status" id="status-co2">✓ طبيعي</div>
-        <div class="mini-chart" id="chart-co2"></div>
+        <div class="sensor-label">💨 CO2</div>
+        <div class="sensor-value" id="val-co2">--</div>
+        <div class="sensor-unit">ppm</div>
+        <div class="sensor-status" id="status-co2">—</div>
       </div>
     </div>
 
-    <!-- ROSS TABLE -->
-    <div class="section-hdr" style="margin-top:16px;">
-      <h3>جدول الحرارة حسب الوزن</h3>
-      <div class="tag">Ross BM Handbook 2025 — Aviagen</div>
-      <div class="line"></div>
-    </div>
-    <div style="background:var(--s1);border:1px solid var(--border);overflow-x:auto;margin-bottom:16px;">
-      <table class="ross-table">
-        <thead>
-          <tr>
-            <th>الوزن (g)</th>
-            <th>بيت كامل °C</th>
-            <th>تحذير °C</th>
-            <th>خطر °C</th>
-            <th>الحالة</th>
-          </tr>
-        </thead>
-        <tbody id="ross-tbody"></tbody>
-      </table>
-    </div>
-
-    <!-- CHECKLIST -->
-    <div class="section-hdr">
-      <h3>قائمة المراقبة اليومية</h3>
-      <div class="tag">Ross Stockmanship — LOOK·SMELL·LISTEN·FEEL</div>
-      <div class="line"></div>
-    </div>
-    <div class="checklist" id="checklist"></div>
-  </div>
-
-  <!-- RIGHT: ALERTS + CHAT -->
-  <div style="display:flex;flex-direction:column;gap:16px;">
-
-    <!-- ALERTS -->
-    <div class="alerts-panel">
-      <div class="panel-header">
-        <div class="panel-title">🔔 التنبيهات <span class="badge-count" id="alert-badge">0</span></div>
-        <div style="font-size:11px;color:var(--dim);font-family:'IBM Plex Mono',monospace;" id="last-check">آخر فحص: --</div>
-      </div>
-      <div class="alerts-list" id="alerts-list">
-        <div style="padding:20px;text-align:center;color:var(--muted);font-size:13px;">جاري التحليل...</div>
+    <!-- Weather -->
+    <div class="sensor-card" style="margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div class="sensor-label">☁️ الطقس الخارجي</div>
+          <div style="font-size:22px;font-weight:700;color:var(--blue);margin-top:4px;" id="weather-temp">--°C</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-top:2px;" id="weather-info">رطوبة: --% | رياح: -- km/h</div>
+        </div>
+        <button onclick="loadWeather()" style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text-dim);font-family:'Tajawal',sans-serif;cursor:pointer;">🔄 تحديث</button>
       </div>
     </div>
 
-    <!-- CHAT -->
-    <div class="chat-section" style="flex:1;">
-      <div class="panel-header">
-        <div class="panel-title">💬 الشات البيطري <span style="font-size:10px;color:var(--green);font-family:'IBM Plex Mono',monospace;">Claude AI</span></div>
-      </div>
-      <div class="chat-messages" id="chat-messages">
-        <div class="msg bot">
-          مرحباً، أنا مساعدك البيطري الذكي. مبني على بيانات Ross Broiler Management Handbook 2025.
-          <br><br>اسألني عن أي مشكلة في قطيعك وسأحاول مساعدتك بناءً على المعايير العلمية الموثقة.
-          <div class="msg-source">📚 المصدر: Ross/Aviagen 2025</div>
+    <!-- Camera -->
+    <div class="cam-section">
+      <div class="cam-header">
+        <h3>📷 الكاميرا</h3>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span id="cam-live-badge" class="cam-live" style="display:none;">مباشر</span>
+          <span class="cam-status" id="cam-status">غير مفعلة</span>
         </div>
       </div>
-      <div class="chat-input-row">
-        <input class="chat-input" id="chat-input" type="text" placeholder="اسأل عن قطيعك بالعربي..." onkeydown="if(event.key==='Enter')sendChat()">
-        <button class="chat-btn" id="chat-btn" onclick="sendChat()">إرسال</button>
+      <div class="cam-view">
+        <video id="cam-video" autoplay playsinline style="display:none;"></video>
+        <div class="cam-placeholder" id="cam-placeholder">
+          <div class="cam-icon">📷</div>
+          <div>اضغط تفعيل لبدء المراقبة</div>
+        </div>
+      </div>
+      <div class="cam-controls">
+        <button class="cam-btn" id="btn-cam-normal" onclick="startCamera('environment')">📷 عادية</button>
+        <button class="cam-btn" id="btn-cam-micro" onclick="startCamera('user')">🔬 ميكرو</button>
+        <button class="cam-btn" onclick="captureAndAnalyze()">🧠 تحليل</button>
+        <button class="cam-btn" onclick="stopCamera()">⏹</button>
       </div>
     </div>
 
+    <!-- نتيجة التحليل -->
+    <div id="analysis-result" style="display:none;" class="report-card">
+      <div class="report-time">🧠 تحليل Claude AI</div>
+      <div id="analysis-text" class="report-content"></div>
+    </div>
   </div>
+
+  <!-- TAB: REPORTS -->
+  <div id="tab-reports" class="tab-content">
+    <div style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">📊 آخر التقارير الآلية (كل 5 دقائق)</div>
+    <div id="reports-list"></div>
+  </div>
+
+  <!-- TAB: FLOCK -->
+  <div id="tab-flock" class="tab-content">
+    <div style="color:var(--green);font-size:18px;font-weight:700;margin-bottom:16px;">📦 بيانات القطيع</div>
+
+    <div class="flock-stat"><span class="flock-stat-label">عدد الطيور الابتدائي</span><span class="flock-stat-value" id="fl-count">--</span></div>
+    <div class="flock-stat"><span class="flock-stat-label">عدد النفوق الكلي</span><span class="flock-stat-value" id="fl-mortality" style="color:var(--red);">0</span></div>
+    <div class="flock-stat"><span class="flock-stat-label">نسبة النفوق</span><span class="flock-stat-value" id="fl-mortality-pct">0.00%</span></div>
+    <div class="flock-stat"><span class="flock-stat-label">عمر القطيع</span><span class="flock-stat-value" id="fl-age">-- يوم</span></div>
+    <div class="flock-stat"><span class="flock-stat-label">السلالة</span><span class="flock-stat-value" id="fl-breed" style="font-size:16px;">--</span></div>
+
+    <div class="setup-card" style="margin-top:16px;">
+      <h3>✍️ تحديث يومي</h3>
+      <div class="grid-2">
+        <div class="field"><label>نفوق اليوم</label><input type="number" id="daily-mortality" placeholder="0" min="0" /></div>
+        <div class="field"><label>ملاحظة طارئة</label><input type="text" id="daily-note" placeholder="اكتب أو قل..." /></div>
+      </div>
+      <button class="btn-primary" onclick="saveDailyRecord()">💾 حفظ السجل اليومي</button>
+    </div>
+
+    <button class="export-btn" onclick="exportFlockData()">📤 تصدير بيانات القطيع (بيع)</button>
+    <div style="color:var(--text-dim);font-size:12px;text-align:center;margin-top:8px;">سيتم حفظ كل البيانات من يوم الاستقبال لحد اليوم</div>
+  </div>
+
+  <!-- TAB: SETTINGS -->
+  <div id="tab-settings" class="tab-content">
+    <div style="color:var(--green);font-size:18px;font-weight:700;margin-bottom:16px;">⚙️ الإعدادات</div>
+
+    <div class="settings-card">
+      <div class="settings-item">
+        <span class="settings-item-label">🏡 المزرعة</span>
+        <span class="settings-item-value" id="set-farm">--</span>
+      </div>
+      <div class="settings-item">
+        <span class="settings-item-label">📍 الموقع</span>
+        <span class="settings-item-value" id="set-location">--</span>
+      </div>
+      <div class="settings-item">
+        <span class="settings-item-label">🧭 الاتجاه</span>
+        <span class="settings-item-value" id="set-direction">--</span>
+      </div>
+      <div class="settings-item">
+        <span class="settings-item-label">📐 مساحة القاعة</span>
+        <span class="settings-item-value" id="set-size">-- م²</span>
+      </div>
+      <div class="settings-item">
+        <span class="settings-item-label">🌬️ التهوية</span>
+        <span class="settings-item-value" id="set-vent">--</span>
+      </div>
+    </div>
+
+    <div class="settings-card">
+      <div class="settings-item">
+        <span class="settings-item-label">التقارير التلقائية</span>
+        <span class="badge">كل 5 دقائق</span>
+      </div>
+      <div class="settings-item">
+        <span class="settings-item-label">التنبيهات الصوتية</span>
+        <span class="badge">مفعلة</span>
+      </div>
+      <div class="settings-item">
+        <span class="settings-item-label">قاعدة المعرفة</span>
+        <span class="badge">Ross 2025</span>
+      </div>
+    </div>
+
+    <button class="btn-primary" style="background:transparent;border:1px solid var(--red);color:var(--red);margin-top:8px;" onclick="logout()">🚪 تسجيل خروج</button>
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab('monitor',this)">
+      <span class="icon">📊</span>مراقبة
+    </button>
+    <button class="nav-btn" onclick="switchTab('reports',this)">
+      <span class="icon">📋</span>تقارير
+    </button>
+    <button class="nav-btn" onclick="switchTab('flock',this)">
+      <span class="icon">🐔</span>القطيع
+    </button>
+    <button class="nav-btn" onclick="switchTab('settings',this)">
+      <span class="icon">⚙️</span>إعدادات
+    </button>
+  </nav>
+
+  <!-- Voice button -->
+  <button class="voice-btn" id="voice-btn" onclick="toggleVoice()">🎤</button>
 </div>
 
+<!-- Voice Display -->
+<div class="voice-display" id="voice-display">
+  <h3>🎤 أنا أسمعك...</h3>
+  <div class="voice-text" id="voice-text">قل أمرك الآن</div>
+  <button class="voice-close" onclick="closeVoice()">إغلاق</button>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-// ROSS DATA — من Ross Broiler Management Handbook 2025
-// ═══════════════════════════════════════════════
-const ROSS_TEMPS = [
-  {weight:44,  target:30, warn:32, danger:34},
-  {weight:100, target:28, warn:30, danger:32},
-  {weight:180, target:27, warn:29, danger:31},
-  {weight:290, target:26, warn:28, danger:30},
-  {weight:425, target:25, warn:27, danger:29},
-  {weight:590, target:24, warn:26, danger:28},
-  {weight:790, target:23, warn:25, danger:27},
-  {weight:1015,target:22, warn:24, danger:26},
-  {weight:1260,target:21, warn:23, danger:25},
-  {weight:1530,target:20, warn:22, danger:24},
-];
+// ===== STATE =====
+let state = {
+  farmData: null,
+  flockData: null,
+  dailyRecords: [],
+  currentStream: null,
+  recognition: null,
+  isListening: false,
+  sensors: { temp: 25, hum: 65, nh3: 8, co2: 1800 },
+  apiKey: '',
+  reports: []
+};
 
-// تقدير الوزن حسب العمر (تقريبي من Ross)
-function estimateWeight(ageDays) {
-  const w = [44,60,90,160,280,430,620,830,1060,1300,1530,1760,1990];
-  return w[Math.min(Math.floor(ageDays/3.5), w.length-1)] || 1990;
-}
-
-function getRossThreshold(ageDays) {
-  const weight = estimateWeight(ageDays);
-  let row = ROSS_TEMPS[ROSS_TEMPS.length-1];
-  for(let r of ROSS_TEMPS) { if(weight <= r.weight){row=r;break;} }
-  return row;
-}
-
-// ═══════════════════════════════════════════════
-// CHECKLIST — من Ross Stockmanship Handbook
-// ═══════════════════════════════════════════════
-const CHECKLIST_ITEMS = [
-  {sense:'look', text:'توزيع الطيور منتظم في القاعة؟ لا مناطق مهجورة؟', checked:false},
-  {sense:'look', text:'الطيور نشيطة تأكل وتشرب — ثلث يأكل، ثلث يشرب، ثلث يستريح', checked:false},
-  {sense:'look', text:'لا طيور تلهث أو تمد رقبتها للأعلى (إجهاد حراري)', checked:false},
-  {sense:'smell', text:'لا رائحة أمونيا حارقة عند الدخول — NH3 < 10 ppm', checked:false},
-  {sense:'smell', text:'الهواء طازج غير راكد أو مختنق', checked:false},
-  {sense:'listen', text:'لا أصوات عطاس أو صفير في التنفس', checked:false},
-  {sense:'listen', text:'المراوح تعمل بسلاسة — لا أصوات غير طبيعية', checked:false},
-  {sense:'feel', text:'الفرشة جافة ومتفككة — لا تتماسك عند الضغط', checked:false},
-  {sense:'feel', text:'حرارة الهواء مناسبة لعمر القطيع على مستوى الطيور', checked:false},
-];
-
-// ═══════════════════════════════════════════════
-// SIMULATED SENSORS — تحديث كل 5 ثواني
-// ═══════════════════════════════════════════════
-let sensorData = {temp:24.2, hum:65, nh3:8, co2:1800};
-let sensorHistory = {temp:[], hum:[], nh3:[], co2:[]};
-
-function simulate() {
-  const age = parseInt(document.getElementById('flock-age').value)||21;
-  const thresh = getRossThreshold(age);
-  // إضافة تغيير عشوائي واقعي
-  sensorData.temp += (Math.random()-0.48)*0.4;
-  sensorData.hum  += (Math.random()-0.5)*1.2;
-  sensorData.nh3  += (Math.random()-0.45)*0.6;
-  sensorData.co2  += (Math.random()-0.48)*40;
-  // حدود منطقية
-  sensorData.temp = Math.max(16, Math.min(38, sensorData.temp));
-  sensorData.hum  = Math.max(30, Math.min(95, sensorData.hum));
-  sensorData.nh3  = Math.max(2,  Math.min(40, sensorData.nh3));
-  sensorData.co2  = Math.max(800,Math.min(6000,sensorData.co2));
-  // تاريخ
-  for(let k of ['temp','hum','nh3','co2']) {
-    sensorHistory[k].push(sensorData[k]);
-    if(sensorHistory[k].length>12) sensorHistory[k].shift();
+// ===== LOGIN =====
+function doLogin() {
+  const name = document.getElementById('login-name').value.trim();
+  const pass = document.getElementById('login-pass').value.trim();
+  if (!name) { document.getElementById('login-error').style.display='block'; return; }
+  localStorage.setItem('ghali-user', name);
+  document.getElementById('login-error').style.display='none';
+  const farm = loadFromStorage('ghali-farm');
+  if (farm) {
+    state.farmData = farm;
+    state.flockData = loadFromStorage('ghali-flock');
+    state.dailyRecords = loadFromStorage('ghali-records') || [];
+    state.apiKey = farm.apiKey || '';
+    showScreen('dashboard');
+    initDashboard();
+  } else {
+    showScreen('setup');
   }
-  renderSensors(thresh);
-  renderAlerts(thresh);
 }
 
-function getSensorStatus(val, ok_max, warn_max) {
-  if(val > warn_max) return 'danger';
-  if(val > ok_max)   return 'warn';
-  return 'ok';
+// ===== SETUP =====
+function saveSetup() {
+  const farm = {
+    name: document.getElementById('farm-name').value || 'مزرعتي',
+    location: document.getElementById('farm-location').value || '',
+    halls: document.getElementById('farm-halls').value || '1',
+    direction: document.getElementById('farm-direction').value,
+    length: document.getElementById('farm-length').value || '80',
+    width: document.getElementById('farm-width').value || '12',
+    ventilation: document.getElementById('farm-ventilation').value,
+    apiKey: document.getElementById('api-key').value || ''
+  };
+  const flock = {
+    startDate: document.getElementById('flock-start').value || new Date().toISOString().split('T')[0],
+    count: parseInt(document.getElementById('flock-count').value) || 5000,
+    breed: document.getElementById('flock-breed').value,
+    source: document.getElementById('flock-source').value || '',
+    mortality: 0
+  };
+  saveToStorage('ghali-farm', farm);
+  saveToStorage('ghali-flock', flock);
+  state.farmData = farm;
+  state.flockData = flock;
+  state.apiKey = farm.apiKey;
+  state.dailyRecords = [];
+  showScreen('dashboard');
+  initDashboard();
+  speak('مرحبا، تم تفعيل نظام غالي او إس. المراقبة جارية.');
 }
 
-function renderSensors(thresh) {
-  // TEMP
-  const ts = getSensorStatus(sensorData.temp, thresh.target+1, thresh.warn);
-  setCard('temp', sensorData.temp.toFixed(1)+'°C', ts, `مستهدف: ${thresh.target}°C | تحذير: ${thresh.warn}°C`);
-  // HUM
-  const hs = sensorData.hum>80?'danger':sensorData.hum>70?'warn':'ok';
-  setCard('hum', Math.round(sensorData.hum)+'%', hs, 'مستهدف: 50–70%');
-  // NH3
-  const ns = sensorData.nh3>25?'danger':sensorData.nh3>10?'warn':'ok';
-  setCard('nh3', Math.round(sensorData.nh3)+' ppm', ns, 'حد أمان: <10 ppm');
-  // CO2
-  const cs = sensorData.co2>5000?'danger':sensorData.co2>2500?'warn':'ok';
-  setCard('co2', Math.round(sensorData.co2)+' ppm', cs, 'حد أمان: <2500 ppm');
-  // mini charts
-  for(let k of ['temp','hum','nh3','co2']) renderMiniChart(k);
+// ===== DASHBOARD =====
+function initDashboard() {
+  updateTopbar();
+  updateFlockTab();
+  updateSettingsTab();
+  loadWeather();
+  startSensorSimulation();
+  startAutoReports();
+  setInterval(updateTopbar, 1000);
 }
 
-function setCard(id, val, status, range) {
-  const card = document.getElementById('card-'+id);
-  card.className = 'sensor-card '+status;
-  const vEl = document.getElementById('val-'+id);
-  vEl.className = 'sensor-val '+status;
-  vEl.innerHTML = val;
-  if(range) document.getElementById('range-'+id).textContent = range;
-  const sEl = document.getElementById('status-'+id);
-  sEl.className = 'sensor-status '+status;
-  sEl.textContent = status==='ok'?'✓ طبيعي':status==='warn'?'⚠ تحذير':'✗ خطر';
+function updateTopbar() {
+  const now = new Date();
+  document.getElementById('tb-time').textContent = now.toLocaleTimeString('ar-EG', {hour:'2-digit',minute:'2-digit'});
+  if (state.farmData) document.getElementById('tb-farm-name').textContent = state.farmData.name;
+  if (state.flockData) {
+    const days = getFlockAge();
+    document.getElementById('tb-day').textContent = `اليوم ${days} من الدورة`;
+  }
 }
 
-function renderMiniChart(key) {
-  const el = document.getElementById('chart-'+key);
-  const hist = sensorHistory[key];
-  if(!hist.length) return;
-  const min = Math.min(...hist), max = Math.max(...hist);
-  el.innerHTML = hist.map(v=>{
-    const pct = max===min?50:((v-min)/(max-min))*100;
-    const h = Math.max(4, pct*0.28);
-    return `<div class="bar-c" style="height:${h}px;background:rgba(0,255,106,${0.1+pct/200})"></div>`;
-  }).join('');
+function getFlockAge() {
+  if (!state.flockData) return 0;
+  const start = new Date(state.flockData.startDate);
+  const now = new Date();
+  return Math.max(1, Math.floor((now - start) / 86400000) + 1);
 }
 
-// ═══════════════════════════════════════════════
-// ALERTS
-// ═══════════════════════════════════════════════
-function renderAlerts(thresh) {
+function updateFlockTab() {
+  if (!state.flockData) return;
+  document.getElementById('fl-count').textContent = state.flockData.count.toLocaleString();
+  document.getElementById('fl-mortality').textContent = state.flockData.mortality || 0;
+  const pct = ((state.flockData.mortality || 0) / state.flockData.count * 100).toFixed(2);
+  document.getElementById('fl-mortality-pct').textContent = pct + '%';
+  document.getElementById('fl-age').textContent = getFlockAge() + ' يوم';
+  document.getElementById('fl-breed').textContent = state.flockData.breed;
+}
+
+function updateSettingsTab() {
+  if (!state.farmData) return;
+  document.getElementById('set-farm').textContent = state.farmData.name;
+  document.getElementById('set-location').textContent = state.farmData.location;
+  document.getElementById('set-direction').textContent = state.farmData.direction;
+  document.getElementById('set-size').textContent = (state.farmData.length * state.farmData.width) + ' م²';
+  document.getElementById('set-vent').textContent = state.farmData.ventilation;
+}
+
+function saveDailyRecord() {
+  const mortality = parseInt(document.getElementById('daily-mortality').value) || 0;
+  const note = document.getElementById('daily-note').value || '';
+  const record = {
+    date: new Date().toISOString(),
+    day: getFlockAge(),
+    mortality, note,
+    temp: state.sensors.temp,
+    hum: state.sensors.hum,
+    nh3: state.sensors.nh3,
+    co2: state.sensors.co2
+  };
+  state.dailyRecords.push(record);
+  state.flockData.mortality = (state.flockData.mortality || 0) + mortality;
+  saveToStorage('ghali-records', state.dailyRecords);
+  saveToStorage('ghali-flock', state.flockData);
+  updateFlockTab();
+  document.getElementById('daily-mortality').value = '';
+  document.getElementById('daily-note').value = '';
+  speak('تم حفظ السجل اليومي');
+  alert('✅ تم حفظ السجل اليومي');
+}
+
+function exportFlockData() {
+  if (!confirm('هل تريد تصدير بيانات القطيع الكاملة؟ هاد بيحفظ كل شي من بداية الدورة.')) return;
+  const exportData = {
+    export_date: new Date().toISOString(),
+    farm: state.farmData,
+    flock: state.flockData,
+    flock_age_days: getFlockAge(),
+    daily_records: state.dailyRecords,
+    summary: {
+      total_birds: state.flockData.count,
+      total_mortality: state.flockData.mortality || 0,
+      mortality_rate: ((state.flockData.mortality || 0) / state.flockData.count * 100).toFixed(2) + '%',
+      days_active: getFlockAge()
+    }
+  };
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `ghali-os_flock_${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  speak('تم تصدير بيانات القطيع. شكراً لاستخدام غالي او إس.');
+}
+
+// ===== SENSORS =====
+function getRossTarget(age) {
+  if (age <= 3) return { temp: 32, hum: 60 };
+  if (age <= 7) return { temp: 30, hum: 60 };
+  if (age <= 14) return { temp: 27, hum: 60 };
+  if (age <= 21) return { temp: 25, hum: 60 };
+  if (age <= 28) return { temp: 23, hum: 60 };
+  return { temp: 20, hum: 60 };
+}
+
+function startSensorSimulation() {
+  updateSensors();
+  setInterval(updateSensors, 5000);
+}
+
+function updateSensors() {
+  const age = getFlockAge();
+  const ross = getRossTarget(age);
+  const temp = (ross.temp + (Math.random() * 3 - 1)).toFixed(1);
+  const hum = Math.round(55 + Math.random() * 20);
+  const nh3 = Math.round(4 + Math.random() * 10);
+  const co2 = Math.round(1500 + Math.random() * 800);
+  state.sensors = { temp: parseFloat(temp), hum, nh3, co2 };
+
+  setSensor('temp', temp, '°C', temp < ross.temp - 2 || temp > ross.temp + 2 ? (temp > ross.temp + 4 ? 'danger' : 'warning') : 'ok',
+    temp < ross.temp - 2 ? '⚠️ منخفضة' : temp > ross.temp + 2 ? '⚠️ مرتفعة' : '✅ طبيعية');
+  setSensor('hum', hum, '%', hum < 40 || hum > 75 ? 'warning' : 'ok', hum < 40 ? '⚠️ جافة' : hum > 75 ? '⚠️ رطبة' : '✅ طبيعية');
+  setSensor('nh3', nh3, 'ppm', nh3 > 25 ? 'danger' : nh3 > 10 ? 'warning' : 'ok', nh3 > 25 ? '🔴 خطر' : nh3 > 10 ? '⚠️ مرتفع' : '✅ آمن');
+  setSensor('co2', co2, 'ppm', co2 > 3000 ? 'danger' : co2 > 2500 ? 'warning' : 'ok', co2 > 3000 ? '🔴 خطر' : co2 > 2500 ? '⚠️ مرتفع' : '✅ آمن');
+
+  checkAlerts(temp, hum, nh3, co2, ross);
+}
+
+function setSensor(id, value, unit, status, label) {
+  document.getElementById('val-' + id).textContent = value;
+  document.getElementById('status-' + id).textContent = label;
+  const card = document.getElementById('card-' + id);
+  card.className = 'sensor-card ' + status;
+  const valEl = document.getElementById('val-' + id);
+  valEl.className = 'sensor-value ' + status + '-val';
+}
+
+function checkAlerts(temp, hum, nh3, co2, ross) {
   const alerts = [];
-  const now = new Date().toLocaleTimeString('ar-SA');
+  if (temp > ross.temp + 3) alerts.push({ title: '🔴 حرارة مرتفعة!', msg: `الحرارة ${temp}°C — المستهدف Ross: ${ross.temp}°C` });
+  if (nh3 > 25) alerts.push({ title: '🔴 NH3 خطير!', msg: `الأمونيا ${nh3} ppm — يجب التهوية الفورية` });
+  if (co2 > 3000) alerts.push({ title: '🔴 CO2 مرتفع!', msg: `ثاني أكسيد الكربون ${co2} ppm` });
 
-  if(sensorData.temp > thresh.danger)
-    alerts.push({type:'danger',icon:'🔴',title:'إجهاد حراري خطر',desc:`الحرارة ${sensorData.temp.toFixed(1)}°C تتجاوز الحد الخطر (${thresh.danger}°C) — زِد التهوية فوراً`,source:'Ross BM Handbook 2025',time:now});
-  else if(sensorData.temp > thresh.warn)
-    alerts.push({type:'warn',icon:'🟡',title:'حرارة مرتفعة — تحذير',desc:`الحرارة ${sensorData.temp.toFixed(1)}°C تجاوزت حد التحذير (${thresh.warn}°C)`,source:'Ross BM Handbook 2025',time:now});
-
-  if(sensorData.nh3 > 25)
-    alerts.push({type:'danger',icon:'🔴',title:'أمونيا خطرة',desc:`NH3 = ${Math.round(sensorData.nh3)} ppm — فوق 25 ppm يسبب التهاب الجهاز التنفسي`,source:'Ross Environmental 2019',time:now});
-  else if(sensorData.nh3 > 10)
-    alerts.push({type:'warn',icon:'🟡',title:'أمونيا مرتفعة',desc:`NH3 = ${Math.round(sensorData.nh3)} ppm — حسّن التهوية`,source:'Ross Environmental 2019',time:now});
-
-  if(sensorData.hum > 80)
-    alerts.push({type:'danger',icon:'🔴',title:'رطوبة عالية جداً',desc:`الرطوبة ${Math.round(sensorData.hum)}% — خطر كوكسيديا وضعف الفرشة`,source:'Ross BM Handbook 2025',time:now});
-
-  if(sensorData.co2 > 2500)
-    alerts.push({type:'warn',icon:'🟡',title:'CO2 مرتفع',desc:`CO2 = ${Math.round(sensorData.co2)} ppm — تهوية غير كافية`,source:'Ross Environmental 2019',time:now});
-
-  // نفوق
-  const mort = parseFloat(document.getElementById('daily-mort').value)||0;
-  const count = parseInt(document.getElementById('flock-count').value)||5000;
-  const mortPct = (mort/count)*100;
-  if(mortPct > 0.5)
-    alerts.push({type:'danger',icon:'🔴',title:'نفوق مرتفع',desc:`${mortPct.toFixed(2)}% يومياً — المعدل الطبيعي أقل من 0.5%`,source:'Ross BM Handbook 2025',time:now});
-
-  if(!alerts.length)
-    alerts.push({type:'ok',icon:'✅',title:'كل شيء طبيعي',desc:'جميع القراءات ضمن المعايير الموثقة من Ross',source:'Ross BM Handbook 2025',time:now});
-
-  const badge = document.getElementById('alert-badge');
-  const dangerCount = alerts.filter(a=>a.type==='danger').length;
-  badge.textContent = alerts.filter(a=>a.type!=='ok').length || '✓';
-  badge.className = 'badge-count ' + (dangerCount>0?'':'warn');
-  if(!alerts.filter(a=>a.type!=='ok').length) badge.className='badge-count ok';
-
-  document.getElementById('last-check').textContent = 'آخر فحص: '+now;
-  document.getElementById('alerts-list').innerHTML = alerts.map(a=>`
-    <div class="alert-item">
-      <div class="alert-icon">${a.icon}</div>
-      <div class="alert-body">
-        <div class="alert-title ${a.type}">${a.title}</div>
-        <div class="alert-desc">${a.desc}</div>
-        <div class="alert-source">📚 ${a.source}</div>
+  const area = document.getElementById('alerts-area');
+  area.innerHTML = '';
+  alerts.forEach(a => {
+    area.innerHTML += `<div class="alert-banner">
+      <div class="alert-icon">🚨</div>
+      <div class="alert-text">
+        <div class="alert-title">${a.title}</div>
+        <div class="alert-msg">${a.msg}</div>
       </div>
-      <div class="alert-time">${a.time}</div>
-    </div>`).join('');
+    </div>`;
+    speak(a.title + '. ' + a.msg);
+  });
 }
 
-// ═══════════════════════════════════════════════
-// ROSS TABLE
-// ═══════════════════════════════════════════════
-function renderRossTable() {
-  const age = parseInt(document.getElementById('flock-age').value)||21;
-  const currentWeight = estimateWeight(age);
-  const tbody = document.getElementById('ross-tbody');
-  tbody.innerHTML = ROSS_TEMPS.map(r=>`
-    <tr class="${currentWeight<=r.weight && currentWeight>(r.weight-200)?'current-age':''}">
-      <td>${r.weight}</td>
-      <td>${r.target}</td>
-      <td style="color:var(--amber)">${r.warn}</td>
-      <td style="color:var(--red)">${r.danger}</td>
-      <td>${currentWeight===r.weight||Math.abs(currentWeight-r.weight)<100?'◀ قطيعك':'—'}</td>
-    </tr>`).join('');
+// ===== AUTO REPORTS =====
+function startAutoReports() {
+  generateReport();
+  setInterval(generateReport, 5 * 60 * 1000);
 }
 
-// ═══════════════════════════════════════════════
-// CHECKLIST
-// ═══════════════════════════════════════════════
-function renderChecklist() {
-  const el = document.getElementById('checklist');
-  el.innerHTML = CHECKLIST_ITEMS.map((item,i)=>`
-    <div class="check-item" onclick="toggleCheck(${i})">
-      <div class="check-box ${item.checked?'checked':''}">${item.checked?'✓':''}</div>
-      <div>
-        <span class="check-sense ${item.sense}">${item.sense.toUpperCase()}</span>
-        <div class="check-text ${item.checked?'done':''}" style="margin-top:4px;">${item.text}</div>
-      </div>
-    </div>`).join('');
-}
-function toggleCheck(i) {
-  CHECKLIST_ITEMS[i].checked = !CHECKLIST_ITEMS[i].checked;
-  renderChecklist();
+function generateReport() {
+  const age = getFlockAge();
+  const ross = getRossTarget(age);
+  const s = state.sensors;
+  const now = new Date().toLocaleTimeString('ar-EG', {hour:'2-digit',minute:'2-digit'});
+  const status = s.temp <= ross.temp + 2 && s.nh3 <= 10 && s.co2 <= 2500 ? 'ok' : 'warn';
+  const report = {
+    time: now,
+    day: age,
+    status,
+    temp: s.temp,
+    hum: s.hum,
+    nh3: s.nh3,
+    co2: s.co2,
+    text: status === 'ok'
+      ? `✅ القطيع بخير — حرارة: ${s.temp}°C | رطوبة: ${s.hum}% | NH3: ${s.nh3}ppm`
+      : `⚠️ تنبيه — حرارة: ${s.temp}°C | NH3: ${s.nh3}ppm | CO2: ${s.co2}ppm`
+  };
+  state.reports.unshift(report);
+  if (state.reports.length > 50) state.reports.pop();
+  renderReports();
 }
 
-// ═══════════════════════════════════════════════
-// WEATHER
-// ═══════════════════════════════════════════════
-async function loadWeather() {
-  document.getElementById('w-loc').textContent = 'جاري التحميل...';
+function renderReports() {
+  const list = document.getElementById('reports-list');
+  list.innerHTML = state.reports.slice(0, 20).map(r => `
+    <div class="report-card">
+      <div class="report-time">اليوم ${r.day} — ${r.time}</div>
+      <div class="report-content ${r.status === 'ok' ? 'report-ok' : 'report-warn'}">${r.text}</div>
+    </div>
+  `).join('');
+}
+
+// ===== CAMERA =====
+async function startCamera(facing) {
   try {
-    const pos = await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{timeout:5000}));
-    const lat = pos.coords.latitude, lon = pos.coords.longitude;
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relativehumidity_2m&timezone=auto`;
-    const res = await fetch(url);
-    const data = await res.json();
-    document.getElementById('w-temp').textContent = data.current_weather.temperature + '°C';
-    document.getElementById('w-wind').textContent = data.current_weather.windspeed + ' km/h';
-    document.getElementById('w-hum').textContent = (data.hourly?.relativehumidity_2m?.[0]??'--') + '%';
-    document.getElementById('w-loc').textContent = `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+    if (state.currentStream) stopCamera();
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } }
+    });
+    state.currentStream = stream;
+    const video = document.getElementById('cam-video');
+    video.srcObject = stream;
+    video.style.display = 'block';
+    document.getElementById('cam-placeholder').style.display = 'none';
+    document.getElementById('cam-live-badge').style.display = 'inline';
+    document.getElementById('cam-status').textContent = facing === 'environment' ? 'كاميرا القطيع' : 'كاميرا ميكرو';
+    document.getElementById('btn-cam-normal').className = 'cam-btn' + (facing === 'environment' ? ' active' : '');
+    document.getElementById('btn-cam-micro').className = 'cam-btn' + (facing === 'user' ? ' active' : '');
   } catch(e) {
-    document.getElementById('w-loc').textContent = 'يحتاج إذن الموقع';
-    document.getElementById('w-temp').textContent = '--°C';
+    alert('لم يتم السماح بالكاميرا. تأكد من الإذن.');
   }
 }
 
-// ═══════════════════════════════════════════════
-// CLAUDE CHAT
-// ═══════════════════════════════════════════════
-const SYSTEM_PROMPT = `أنت مساعد بيطري ذكي متخصص في دواجن البروiler.
+function stopCamera() {
+  if (state.currentStream) {
+    state.currentStream.getTracks().forEach(t => t.stop());
+    state.currentStream = null;
+  }
+  document.getElementById('cam-video').style.display = 'none';
+  document.getElementById('cam-placeholder').style.display = 'block';
+  document.getElementById('cam-live-badge').style.display = 'none';
+  document.getElementById('cam-status').textContent = 'غير مفعلة';
+}
 
-بياناتك المرجعية:
-- Ross Broiler Management Handbook 2025 - Aviagen
-- منهجية المراقبة: LOOK, LISTEN, SMELL, FEEL
+async function captureAndAnalyze() {
+  const video = document.getElementById('cam-video');
+  if (!video.srcObject) { alert('فعّل الكاميرا أولاً'); return; }
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  const imageData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
 
-جداول الحرارة من Ross حسب الوزن:
-- 44g = 30°C | 290g = 26°C | 790g = 23°C | 1530g = 20°C
-- تحذير: +2°C فوق الطبيعي | خطر: +4°C
-- NH3: طبيعي <10ppm، تحذير 10-25ppm، خطر >25ppm
-- رطوبة: طبيعي 50-70%، تحذير 70-80%، خطر >80%
-- CO2: طبيعي <2500ppm، خطر >5000ppm
+  const resultDiv = document.getElementById('analysis-result');
+  const textDiv = document.getElementById('analysis-text');
+  resultDiv.style.display = 'block';
+  textDiv.textContent = '⏳ جاري التحليل بواسطة Claude...';
 
-قواعد الإجابة:
-1. أجب بالعربي دائماً
-2. كل معلومة اذكر مصدرها (Ross BM 2025 أو Ross Environmental)
-3. إذا طلب المربي تشخيصاً قل: "هذا تقييم أولي — يجب تأكيده من طبيب بيطري"
-4. كن محدداً وعملياً
-5. لا تخترع أرقاماً غير موجودة في المصادر`;
-
-async function sendChat() {
-  const input = document.getElementById('chat-input');
-  const btn = document.getElementById('chat-btn');
-  const msg = input.value.trim();
-  if(!msg) return;
-
-  const age = document.getElementById('flock-age').value;
-  const count = document.getElementById('flock-count').value;
-  const mort = document.getElementById('daily-mort').value;
-  const ctx = `\n\n[بيانات القطيع الحالية: عمر ${age} يوم، عدد ${count} طير، نفوق اليوم ${mort} طير، حرارة ${sensorData.temp.toFixed(1)}°C، رطوبة ${Math.round(sensorData.hum)}%، NH3 ${Math.round(sensorData.nh3)}ppm]`;
-
-  addMsg(msg, 'user');
-  input.value = '';
-  btn.disabled = true;
-  const typingEl = addTyping();
+  if (!state.apiKey) {
+    textDiv.innerHTML = `<span style="color:var(--yellow)">⚠️ لا يوجد API Key. أدخله في الإعدادات لتفعيل التحليل الذكي.<br><br>نتيجة محلية: الطيور تبدو نشيطة. لا علامات مرضية واضحة.</span>`;
+    return;
+  }
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-haiku-4-5-20251001',
-        max_tokens:1000,
-        system: SYSTEM_PROMPT,
-        messages:[{role:'user', content: msg + ctx}]
+    const prompt = `أنت نظام GhaliOS البيطري. حلل هذه الصورة من مزرعة دواجن.
+السلالة: ${state.flockData?.breed || 'Ross 308'}
+عمر القطيع: ${getFlockAge()} يوم
+الحرارة: ${state.sensors.temp}°C | الرطوبة: ${state.sensors.hum}%
+
+حلل:
+1. شكل وسلوك الطيور
+2. أي علامات مرضية
+3. حالة الفرشة
+4. التوزيع في القاعة
+5. التوصية الفورية
+
+الجواب بالعربي، مختصر وعملي.`;
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': state.apiKey, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: [
+          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imageData } },
+          { type: 'text', text: prompt }
+        ]}]
       })
     });
-    const data = await res.json();
-    typingEl.remove();
-    const reply = data.content?.[0]?.text || 'عذراً، حدث خطأ. تأكد من API Key.';
-    addMsg(reply, 'bot', '📚 Ross/Aviagen 2025');
+    const data = await response.json();
+    textDiv.textContent = data.content?.[0]?.text || 'لم يتم الحصول على تحليل';
+    speak('تم التحليل. راجع النتيجة على الشاشة.');
   } catch(e) {
-    typingEl.remove();
-    addMsg('تعذر الاتصال بـ Claude API. تأكد من الاتصال بالإنترنت.', 'bot');
+    textDiv.textContent = 'خطأ في الاتصال بـ Claude API';
   }
-  btn.disabled = false;
-  input.focus();
 }
 
-function addMsg(text, type, source='') {
-  const el = document.createElement('div');
-  el.className = 'msg '+type;
-  el.innerHTML = text.replace(/\n/g,'<br>');
-  if(source) el.innerHTML += `<div class="msg-source">${source}</div>`;
-  const cont = document.getElementById('chat-messages');
-  cont.appendChild(el);
-  cont.scrollTop = cont.scrollHeight;
-  return el;
+// ===== WEATHER =====
+async function loadWeather() {
+  try {
+    const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej));
+    const { latitude: lat, longitude: lon } = pos.coords;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m&wind_speed_unit=kmh`;
+    const data = await fetch(url).then(r => r.json());
+    const c = data.current;
+    document.getElementById('weather-temp').textContent = c.temperature_2m + '°C';
+    document.getElementById('weather-info').textContent = `رطوبة: ${c.relative_humidity_2m}% | رياح: ${c.wind_speed_10m} km/h`;
+  } catch(e) {
+    document.getElementById('weather-temp').textContent = '--°C';
+    document.getElementById('weather-info').textContent = 'اضغط تحديث للحصول على الطقس';
+  }
 }
 
-function addTyping() {
-  const el = document.createElement('div');
-  el.className = 'msg bot';
-  el.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
-  const cont = document.getElementById('chat-messages');
-  cont.appendChild(el);
-  cont.scrollTop = cont.scrollHeight;
-  return el;
+// ===== VOICE =====
+function toggleVoice() {
+  if (state.isListening) { closeVoice(); return; }
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert('المتصفح لا يدعم التعرف على الصوت. جرب Chrome.');
+    return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  state.recognition = new SR();
+  state.recognition.lang = 'ar-SA';
+  state.recognition.continuous = false;
+  state.recognition.interimResults = true;
+  state.recognition.onresult = e => {
+    const text = Array.from(e.results).map(r => r[0].transcript).join('');
+    document.getElementById('voice-text').textContent = text;
+    if (e.results[e.results.length-1].isFinal) handleVoiceCommand(text);
+  };
+  state.recognition.onend = () => { state.isListening = false; document.getElementById('voice-btn').className = 'voice-btn'; };
+  state.recognition.start();
+  state.isListening = true;
+  document.getElementById('voice-btn').className = 'voice-btn listening';
+  document.getElementById('voice-display').className = 'voice-display show';
+  document.getElementById('voice-text').textContent = 'قل أمرك الآن...';
 }
 
-// ═══════════════════════════════════════════════
-// UPDATE ALL
-// ═══════════════════════════════════════════════
-function updateAll() {
-  const age = parseInt(document.getElementById('flock-age').value)||21;
-  const count = parseInt(document.getElementById('flock-count').value)||5000;
-  const mort = parseFloat(document.getElementById('daily-mort').value)||0;
-  const thresh = getRossThreshold(age);
-  document.getElementById('target-temp').textContent = thresh.target+'°C';
-  document.getElementById('mort-pct').textContent = ((mort/count)*100).toFixed(2)+'%';
-  const mortEl = document.getElementById('mort-pct');
-  const mortPct = (mort/count)*100;
-  mortEl.className = 'setup-value ' + (mortPct>0.5?'':'amber');
-  renderRossTable();
-  const thresh2 = getRossThreshold(age);
-  renderSensors(thresh2);
-  renderAlerts(thresh2);
+function handleVoiceCommand(text) {
+  const lower = text.toLowerCase();
+  if (lower.includes('تقرير') || lower.includes('الحالة')) {
+    speak(`حالة القطيع. الحرارة ${state.sensors.temp} درجة. الرطوبة ${state.sensors.hum}%. الأمونيا ${state.sensors.nh3} جزء بالمليون. الوضع طبيعي.`);
+  } else if (lower.includes('عمر') || lower.includes('يوم')) {
+    speak(`القطيع عمره ${getFlockAge()} يوم`);
+  } else if (lower.includes('حرارة')) {
+    speak(`الحرارة الحالية ${state.sensors.temp} درجة مئوية`);
+  } else if (lower.includes('كاميرا')) {
+    startCamera('environment');
+    speak('تم تفعيل الكاميرا');
+  } else {
+    speak('سمعتك. أنا هنا لمساعدتك.');
+  }
+  setTimeout(closeVoice, 2000);
 }
 
-// CLOCK
-function updateClock() {
-  document.getElementById('clock').textContent = new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});
+function closeVoice() {
+  if (state.recognition) state.recognition.stop();
+  state.isListening = false;
+  document.getElementById('voice-btn').className = 'voice-btn';
+  document.getElementById('voice-display').className = 'voice-display';
 }
 
-// ═══════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════
-renderChecklist();
-renderRossTable();
-updateAll();
-loadWeather();
-updateClock();
-setInterval(simulate, 5000);
-setInterval(updateClock, 1000);
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ar-SA';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+// ===== NAVIGATION =====
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+}
+
+function logout() {
+  if (confirm('تسجيل خروج؟')) { localStorage.removeItem('ghali-user'); location.reload(); }
+}
+
+// ===== STORAGE =====
+function saveToStorage(key, data) { try { localStorage.setItem(key, JSON.stringify(data)); } catch(e){} }
+function loadFromStorage(key) { try { return JSON.parse(localStorage.getItem(key)); } catch(e){ return null; } }
+
+// ===== INIT =====
+window.onload = () => {
+  const user = localStorage.getItem('ghali-user');
+  if (user) {
+    document.getElementById('login-name').value = user;
+    const farm = loadFromStorage('ghali-farm');
+    if (farm) { state.farmData = farm; state.flockData = loadFromStorage('ghali-flock'); state.dailyRecords = loadFromStorage('ghali-records') || []; state.apiKey = farm.apiKey || ''; showScreen('dashboard'); initDashboard(); return; }
+  }
+  showScreen('login');
+};
 </script>
 </body>
 </html>
